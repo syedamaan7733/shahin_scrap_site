@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  sub?: string;
+  light?: boolean;
+  center?: boolean;
+}
+const { title, sub, light = false, center = false } = Astro.props;
+---
+
+<div class:list={[center && 'text-center']} data-reveal>
+  <h2
+    class:list={[
+      'font-heading font-bold text-3xl sm:text-4xl',
+      light ? 'text-canvas' : 'text-steel-charcoal',
+    ]}
+  >
+    {title}
+  </h2>
+  <div
+    class:list={[
+      'mt-3 h-1 w-16 rounded bg-copper-aged',
+      center && 'mx-auto',
+    ]}
+  >
+  </div>
+  {
+    sub && (
+      <p
+        class:list={[
+          'mt-4 max-w-2xl text-base',
+          light ? 'text-gold-pale' : 'text-slate-industrial',
+          center && 'mx-auto',
+        ]}
+      >
+        {sub}
+      </p>
+    )
+  }
+</div>

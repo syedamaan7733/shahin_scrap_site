@@ -1,0 +1,26 @@
+---
+import CTAButtons from './CTAButtons.astro';
+
+interface Props {
+  heading?: string;
+  sub?: string;
+  message?: string;
+}
+const {
+  heading = "Have a lot to scrap? Let's talk contracts.",
+  sub = 'Site surveys across Surguja and beyond. Response within business hours, every day.',
+  message,
+} = Astro.props;
+---
+
+<section class="bg-slate-industrial">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 py-14 text-center" data-reveal>
+    <h2 class="font-heading font-bold text-2xl sm:text-3xl text-canvas">
+      {heading}
+    </h2>
+    <p class="mt-3 text-gold-pale">{sub}</p>
+    <div class="mt-7 text-canvas">
+      <CTAButtons center message={message} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  title?: string;
+  steps: string[];
+}
+const { title, steps } = Astro.props;
+---
+
+<div data-reveal>
+  {
+    title && (
+      <h3 class="font-heading font-semibold text-lg text-steel-charcoal">
+        {title}
+      </h3>
+    )
+  }
+  <ol class="mt-4 flex flex-col sm:flex-row sm:flex-wrap items-stretch gap-y-3">
+    {
+      steps.map((step, i) => (
+        <li class="flex items-center">
+          <div class="flex items-center gap-3 rounded-lg border border-copper-aged/40 bg-white px-4 py-3 shadow-sm">
+            <span class="font-mono text-sm font-medium text-amber-signal tabular-nums">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="text-sm font-medium text-steel-charcoal">{step}</span>
+          </div>
+          {i < steps.length - 1 && (
+            <svg
+              class="mx-2 h-5 w-5 shrink-0 text-copper-aged rotate-90 sm:rotate-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</div>

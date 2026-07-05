@@ -1,0 +1,27 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  light?: boolean;
+}
+const { value, label, light = false } = Astro.props;
+---
+
+<div class="text-center" data-reveal>
+  <p
+    class:list={[
+      'font-mono text-2xl sm:text-3xl font-medium tabular-nums',
+      light ? 'text-gold-pale' : 'text-copper-aged',
+    ]}
+  >
+    {value}
+  </p>
+  <p
+    class:list={[
+      'mt-1 text-xs sm:text-sm uppercase tracking-wide',
+      light ? 'text-brass-light/80' : 'text-slate-industrial',
+    ]}
+  >
+    {label}
+  </p>
+</div>

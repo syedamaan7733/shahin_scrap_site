@@ -1,0 +1,235 @@
+---
+import '../styles/global.css';
+import { SITE, NAV, whatsappLink, telLink } from '../config/site';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = SITE.description } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {SITE.name}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Archivo:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header
+      class="fixed top-0 inset-x-0 z-50 bg-canvas/95 backdrop-blur border-b-2 border-bronze-deep"
+    >
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4"
+      >
+        <a href="/" class="flex items-center gap-2 shrink-0">
+          <img src="/logo.png" alt={`${SITE.name} logo`} class="h-11 w-auto" />
+          <span
+            class="font-logo font-bold uppercase tracking-[0.08em] text-lg text-steel-charcoal"
+            >{SITE.name}</span
+          >
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-6">
+          {
+            NAV.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  'text-sm font-medium hover:text-copper-aged transition-colors',
+                  currentPath === item.href
+                    ? 'text-copper-aged'
+                    : 'text-steel-charcoal',
+                ]}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a
+            href={telLink}
+            class="hidden sm:inline-flex items-center justify-center h-10 w-10 rounded-full border border-copper-aged text-copper-aged hover:bg-copper-aged hover:text-canvas transition-colors"
+            aria-label={`Call ${SITE.phoneDisplay}`}
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 rounded bg-amber-signal px-3 sm:px-4 py-2 text-sm font-semibold text-steel-charcoal hover:scale-105 transition-transform"
+          >
+            WhatsApp
+          </a>
+          <button
+            id="nav-toggle"
+            class="lg:hidden inline-flex items-center justify-center h-10 w-10 text-steel-charcoal"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+          >
+            <svg
+              class="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <nav
+        id="nav-mobile"
+        class="hidden lg:hidden border-t border-bronze-deep/20 bg-canvas px-4 py-3"
+      >
+        {
+          NAV.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'block py-2 text-sm font-medium',
+                currentPath === item.href
+                  ? 'text-copper-aged'
+                  : 'text-steel-charcoal',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+
+    <main class="flex-1 pt-16">
+      <slot />
+    </main>
+
+    <footer class="bg-slate-industrial text-gold-pale">
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        <div>
+          <div class="flex items-center gap-2">
+            <img
+              src="/logo.png"
+              alt={`${SITE.name} logo`}
+              class="h-12 w-auto"
+            />
+            <span
+              class="font-logo font-bold uppercase tracking-[0.08em] text-lg"
+              >{SITE.name}</span
+            >
+          </div>
+          <p class="mt-3 text-sm text-brass-light">{SITE.motto}</p>
+          <p class="mt-1 text-sm text-brass-light/80">
+            Metal, material & vehicle scrap — mining, industrial and government
+            sectors.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-heading font-semibold text-canvas">Quick Links</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            {
+              NAV.filter((i) => i.href !== '/').map((item) => (
+                <li>
+                  <a href={item.href} class="hover:text-canvas">
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-heading font-semibold text-canvas">
+            Materials Handled
+          </h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>Iron & Steel · Copper · Brass</li>
+            <li>Aluminium · Plastic · Tyres</li>
+            <li>Mining & Construction Vehicles</li>
+            <li>Mixed Industrial Scrap</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-heading font-semibold text-canvas">Contact</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>{SITE.address}</li>
+            <li>
+              <a href={telLink} class="hover:text-canvas"
+                >{SITE.phoneDisplay}</a
+              >
+            </li>
+            <li>
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener"
+                class="hover:text-canvas">Chat on WhatsApp</a
+              >
+            </li>
+            <li>{SITE.hours}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gold-pale/20">
+        <div
+          class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-2 text-xs text-brass-light/70"
+        >
+          <p>
+            © {new Date().getFullYear()}
+            {SITE.name}. {SITE.motto}.
+          </p>
+          <p>English · <span title="Coming soon">हिन्दी (soon)</span></p>
+        </div>
+      </div>
+    </footer>
+
+    <FloatingWhatsApp />
+
+    <script>
+      const toggle = document.getElementById('nav-toggle');
+      const mobileNav = document.getElementById('nav-mobile');
+      toggle?.addEventListener('click', () => {
+        const open = mobileNav?.classList.toggle('hidden') === false;
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.15 }
+      );
+      document
+        .querySelectorAll('[data-reveal]')
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

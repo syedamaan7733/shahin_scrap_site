@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTAButtons from '../components/CTAButtons.astro';
+import { SITE, telLink, whatsappLink } from '../config/site';
+
+const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapsQuery)}&output=embed`;
+---
+
+<BaseLayout title="Contact Us">
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
+    <SectionHeading
+      title="Contact Us"
+      sub="One number for everything — chat or call, whichever works for you."
+    />
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16">
+    <div
+      class="rounded-lg bg-slate-industrial p-8 sm:p-12 text-center text-canvas"
+      data-reveal
+    >
+      <p class="font-mono text-2xl sm:text-3xl text-gold-pale tabular-nums">
+        <a href={telLink} class="hover:text-canvas">{SITE.phoneDisplay}</a>
+      </p>
+      <p class="mt-2 text-sm text-brass-light">
+        WhatsApp and calls — same number · {SITE.hours}
+      </p>
+      <div class="mt-8">
+        <CTAButtons center />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-20">
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div data-reveal>
+        <h3 class="font-heading font-semibold text-xl text-steel-charcoal">
+          Office
+        </h3>
+        <p class="mt-3 text-slate-industrial">{SITE.address}</p>
+        <h3 class="mt-8 font-heading font-semibold text-xl text-steel-charcoal">
+          Hours
+        </h3>
+        <p class="mt-3 text-slate-industrial">{SITE.hours}</p>
+        <h3 class="mt-8 font-heading font-semibold text-xl text-steel-charcoal">
+          Prefer to write first?
+        </h3>
+        <p class="mt-3 text-slate-industrial">
+          Open a WhatsApp chat with your company name and requirement — we
+          respond within business hours.
+        </p>
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener"
+          class="mt-3 inline-block font-semibold text-copper-aged hover:text-amber-signal"
+          >Start the chat →</a
+        >
+      </div>
+      <div
+        class="overflow-hidden rounded-lg border border-bronze-deep/15 min-h-[320px]"
+        data-reveal
+      >
+        <iframe
+          src={mapsSrc}
+          title={`Map — ${SITE.name}, ${SITE.addressShort}`}
+          class="h-full w-full min-h-[320px]"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

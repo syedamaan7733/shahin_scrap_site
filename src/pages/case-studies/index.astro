@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import CTABand from '../../components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const caseStudies = (await getCollection('case-studies')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout title="Case Studies">
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
+    <SectionHeading
+      title="Case Studies"
+      sub="Representative engagements across our core verticals — metal scrap contracts, mining vehicle decommissioning, and construction site clearance."
+    />
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-20">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        caseStudies.map((cs) => (
+          <CaseStudyCard
+            title={cs.data.title}
+            sector={cs.data.sector}
+            scope={cs.data.scope}
+            stat={cs.data.stat}
+            image={cs.data.image}
+            href={`/case-studies/${cs.id}`}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <CTABand
+    heading="Planning a similar project?"
+    message="Hello Shahin Scrap, I saw your case studies and want to discuss a project."
+  />
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  blurb: string;
+  image?: string;
+  href?: string;
+}
+const { title, blurb, image, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  href={href}
+  class:list={[
+    'group block overflow-hidden rounded-lg border border-bronze-deep/15 bg-white shadow-sm',
+    href && 'hover:shadow-md hover:-translate-y-0.5 transition-all',
+  ]}
+  data-reveal
+>
+  {
+    image && (
+      <div class="aspect-[16/9] overflow-hidden bg-brass-light/20">
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+    )
+  }
+  <div class="p-5">
+    <h3 class="font-heading font-semibold text-lg text-steel-charcoal">
+      {title}
+    </h3>
+    <p class="mt-2 text-sm text-slate-industrial">{blurb}</p>
+    {
+      href && (
+        <p class="mt-3 text-sm font-semibold text-copper-aged group-hover:text-amber-signal">
+          Read more →
+        </p>
+      )
+    }
+  </div>
+</Tag>

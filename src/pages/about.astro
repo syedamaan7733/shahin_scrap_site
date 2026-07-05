@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout title="About Us">
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-12">
+    <SectionHeading title="About Shahin Scrap" sub={SITE.motto} />
+    <div class="mt-8 max-w-3xl space-y-4 text-slate-industrial" data-reveal>
+      <p>
+        Shahin Scrap began in <strong class="text-steel-charcoal">1985</strong>
+        as a scrap dealership in Ambikapur. Four decades on, the firm is one of
+        the most recognised names in the scrap trade across Surguja district —
+        a reputation built lifting by lifting, contract by contract.
+      </p>
+      <p>
+        What started with local metal purchases has grown into a contractual
+        B2B operation serving mining companies, industrial plants, and road &
+        construction contractors. The heritage is family-run; the operations
+        are modern — certified weighment, GST invoicing, and documented
+        disposal on every consignment.
+      </p>
+      <p>
+        Today the firm works with public-sector mining subsidiaries, private
+        conglomerates, and government auction channels, handling everything
+        from plant process scrap to complete end-of-life mining equipment
+        decommissions.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-gold-pale/30">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+      <SectionHeading title="Our Vision" />
+      <p class="mt-6 max-w-3xl text-slate-industrial" data-reveal>
+        To be the preferred scrap partner for large-scale mining,
+        road-infrastructure, and industrial decommissioning across Chhattisgarh
+        and central India — with responsible recycling and full documentation
+        as the standard, not the exception.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+    <SectionHeading
+      title="The Surguja Advantage"
+      sub="Why being headquartered in Ambikapur matters."
+    />
+    <div class="mt-10 grid gap-6 sm:grid-cols-3">
+      <div
+        class="rounded-lg border border-bronze-deep/10 bg-white p-6 shadow-sm"
+        data-reveal
+      >
+        <h3 class="font-heading font-semibold">At the centre of the belt</h3>
+        <p class="mt-2 text-sm text-slate-industrial">
+          Surguja sits at the intersection of Chhattisgarh's coal belt — with
+          SECL operations at Bishrampur and Baikunthpur nearby — the bauxite
+          reserves of Mainpat, and the expanding NH-43 and rural road network.
+          All of it generates scrap at scale.
+        </p>
+      </div>
+      <div
+        class="rounded-lg border border-bronze-deep/10 bg-white p-6 shadow-sm"
+        data-reveal
+      >
+        <h3 class="font-heading font-semibold">Inside the formal ecosystem</h3>
+        <p class="mt-2 text-sm text-slate-industrial">
+          MSTC-portal auctions, Chhattisgarh State Pollution Control Board
+          compliance, GST-registered invoicing, and MSME/Udyam registration —
+          we operate through the formal channels your procurement team
+          requires.
+        </p>
+      </div>
+      <div
+        class="rounded-lg border border-bronze-deep/10 bg-white p-6 shadow-sm"
+        data-reveal
+      >
+        <h3 class="font-heading font-semibold">Local means faster</h3>
+        <p class="mt-2 text-sm text-slate-industrial">
+          A local headquarters means faster site response, lower logistics
+          cost, and four decades of relationships with regional transport and
+          processing networks.
+        </p>
+      </div>
+    </div>
+    <p
+      class="mt-10 max-w-3xl italic text-slate-industrial border-l-4 border-copper-aged pl-4"
+      data-reveal
+    >
+      Shahin Scrap operates with all statutory registrations — GST, State
+      Pollution Control Board clearances, MSME/Udyam — required to bid for
+      private contracts and government tenders. Documentation is shared
+      directly with associates during onboarding.
+    </p>
+  </section>
+
+  <CTABand heading="Talk to a firm that's been here since 1985" />
+</BaseLayout>

@@ -1,0 +1,122 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Primary metallics */
+  --color-bronze-deep: #4a3426;
+  --color-copper-aged: #8b6544;
+  --color-bronze-warm: #a67c52;
+  --color-brass-light: #c9a876;
+  --color-gold-pale: #e0c9a6;
+
+  /* Supporting */
+  --color-steel-charcoal: #2b2622;
+  --color-slate-industrial: #3d3b38;
+  --color-canvas: #f7f4ef;
+  --color-amber-signal: #d4881f;
+
+  /* Fonts */
+  --font-logo: 'Oswald', sans-serif;
+  --font-heading: 'Archivo', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+:root {
+  --gradient-bronze: linear-gradient(
+    135deg,
+    #4a3426 0%,
+    #8b6544 35%,
+    #c9a876 65%,
+    #e0c9a6 100%
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-canvas);
+  color: var(--color-steel-charcoal);
+}
+
+/* ---------- Parallax hero ---------- */
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+/* fixed backgrounds are janky on touch devices */
+@media (hover: none), (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Client marquee (left -> right, pause on hover) ---------- */
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 30s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ---------- Floating WhatsApp pulse ---------- */
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+.wa-pulse {
+  animation: wa-pulse 2.5s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track {
+    animation-duration: 60s;
+  }
+  .wa-pulse {
+    animation: none;
+  }
+}

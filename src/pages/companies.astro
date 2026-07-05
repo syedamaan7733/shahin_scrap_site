@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+import { CLIENTS } from '../config/site';
+
+const sectors = [
+  {
+    name: 'Public-Sector Coal & Mining',
+    detail:
+      'Auction-based equipment disposal and scrap lifting for PSU mining subsidiaries operating in the Surguja coal belt.',
+  },
+  {
+    name: 'Private Mining Conglomerates',
+    detail:
+      'Contractual scrap and end-of-life equipment programmes for private mining operators.',
+  },
+  {
+    name: 'Road & Highway Contractors',
+    detail:
+      'Rolling site-clearance contracts across construction camps — shuttering, rebar, tyres and general scrap.',
+  },
+  {
+    name: 'Industrial Plants',
+    detail:
+      'Fixed-rate procurement of process scrap, plant clean-outs and decommissioning recovery.',
+  },
+  {
+    name: 'Government Auctions (MSTC)',
+    detail:
+      'Registered participation in MSTC-portal auctions with full compliance documentation.',
+  },
+  {
+    name: 'Civil / General',
+    detail:
+      'General civil-works scrap, demolition recovery and bulk mixed-material clearance.',
+  },
+];
+---
+
+<BaseLayout title="Companies We've Worked With">
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
+    <SectionHeading
+      title="Companies We've Worked With"
+      sub="Four decades of engagements — many of them repeat, long-term contracts."
+    />
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-3 items-center gap-10 rounded-lg border border-bronze-deep/15 bg-white p-10"
+      data-reveal
+    >
+      {
+        CLIENTS.map((client) => (
+          <div class="flex items-center justify-center">
+            <img
+              src={client.logo}
+              alt={client.name}
+              title={client.name}
+              loading="lazy"
+              class="max-h-20 w-auto object-contain"
+            />
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-4 text-sm text-slate-industrial/70 text-center">
+      More associations added as engagements formalise.
+    </p>
+  </section>
+
+  <section class="bg-gold-pale/30">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+      <SectionHeading title="Sectors We Serve" />
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          sectors.map((s) => (
+            <div
+              class="rounded-lg border border-bronze-deep/10 bg-white p-6 shadow-sm"
+              data-reveal
+            >
+              <h3 class="font-heading font-semibold text-steel-charcoal">
+                {s.name}
+              </h3>
+              <p class="mt-2 text-sm text-slate-industrial">{s.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+    <div
+      class="rounded-lg border border-copper-aged/30 bg-white p-8"
+      data-reveal
+    >
+      <h3 class="font-heading font-semibold text-xl">
+        Built on repeat engagements
+      </h3>
+      <p class="mt-3 text-slate-industrial">
+        Most of our contract relationships extend beyond their first term.
+        Clients stay because rates hold as agreed, liftings happen on schedule,
+        and every consignment closes with clean documentation — the basics,
+        done consistently for 40 years.
+      </p>
+    </div>
+  </section>
+
+  <CTABand heading="Add your company to this list" />
+</BaseLayout>
