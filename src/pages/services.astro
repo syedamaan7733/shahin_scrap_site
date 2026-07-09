@@ -2,52 +2,117 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import MaterialCard from '../components/MaterialCard.astro';
-import WorkflowDiagram from '../components/WorkflowDiagram.astro';
 import CTABand from '../components/CTABand.astro';
 
-const materials = [
+// Anchor ids are shared with the home-page cards and footer links.
+const services = [
   {
-    title: 'Iron & Steel',
-    blurb:
-      'Structural offcuts, rebar, plate, machine parts and heavy melting scrap — graded and weighed on certified weighbridges.',
-    image: '/images/materials/iron.jpg',
+    id: 'iron-scrap',
+    title: 'Iron Scrap',
+    image: '/images/services/iron.jpg',
+    desc: "Sheets, rods, angles, castings and heavy melting scrap — every grade of iron and steel is welcome. Whether it comes from a factory floor, a demolition site or your backyard, nothing is too big or too small for us. Every consignment is weighed on certified weighbridges in front of you, graded honestly and paid at the day's true market rate — with proper paperwork to close the deal.",
   },
   {
-    title: 'Copper',
-    blurb:
-      'Cable, windings, busbar and mixed copper scrap. High-value material handled with itemised documentation.',
-    image: '/images/materials/copper.jpg',
+    id: 'copper-scrap',
+    title: 'Copper Scrap',
+    image: '/images/services/copper.jpg',
+    desc: "Bright wire, cables, windings, pipes and mixed copper of every kind. Copper is high-value material, so we treat it that way: grading happens in front of you, weighing is fully transparent, and payment follows the day's best market rate. Every kilogram is accounted for with itemised documentation — whether you bring one bag or send a full truckload.",
   },
   {
-    title: 'Brass',
-    blurb:
-      'Fittings, valves, turnings and mixed brass — segregated and graded before weighment.',
-    image: '/images/materials/brass.jpg',
+    id: 'aluminium-scrap',
+    title: 'Aluminium Scrap',
+    image: '/images/services/aluminium.jpg',
+    desc: 'Utensils, sheets, sections, radiators, castings and machine parts — aluminium reaches us from homes, workshops, garages and industry alike. Every form is accepted and sorted by grade, so each type earns its right price. From a few kilograms of household aluminium to full industrial consignments, the process stays the same: fair rates, honest weighing and quick payment.',
   },
   {
-    title: 'Aluminium',
-    blurb:
-      'Sections, sheets, radiators, utensil grade and cast aluminium from industrial and vehicle sources.',
-    image: '/images/materials/aluminium.jpg',
+    id: 'brass-scrap',
+    title: 'Brass Scrap',
+    image: '/images/services/brass.jpg',
+    desc: "Taps, valves, fittings, turnings, armatures and mixed brass in any quantity. Brass often hides inside mixed lots, so our team segregates and grades it carefully before weighing — ensuring you are paid brass rates for brass, not mixed-scrap rates. Small traders and large workshops both get the same honest treatment.",
   },
   {
-    title: 'Plastic',
-    blurb:
-      'Industrial plastic scrap, HDPE drums, pipes and packaging — baled and moved in volume.',
-    image: '/images/materials/plastic.jpg',
+    id: 'stainless-steel-scrap',
+    title: 'Stainless Steel Scrap',
+    image: '/images/services/stainless-steel.jpg',
+    desc: 'Kitchen and dairy equipment, hospital fittings, tanks, sinks and fabrication offcuts — stainless steel of every grade finds a buyer here. Each lot is checked, graded and weighed transparently so you receive true market value. We handle everything from a single old almirah to bulk stainless recovery from plant dismantling.',
   },
   {
-    title: 'Tyres',
-    blurb:
-      'Worn tyres from mining, highway and construction fleets, cleared in bulk from site yards.',
-    image: '/images/materials/tyres.jpg',
+    id: 'plastic-scrap',
+    title: 'Plastic Scrap',
+    image: '/images/services/plastic.jpg',
+    desc: 'Household plastic, HDPE drums, pipes, crates, buckets and industrial packaging — we buy all types of plastic scrap. Everything we collect is sorted by type and baled for responsible recycling, keeping it out of landfills and drains. Shops, factories and households are all welcome, in any volume.',
   },
   {
+    id: 'tyre-scrap',
+    title: 'Tyre Scrap',
+    image: '/images/services/tyres.jpg',
+    desc: 'From scooter and car tyres to giant mining and earthmover tyres — every size and any count is accepted. Old tyres eat up yard space and invite trouble, so our team clears them in bulk from fleets, sites and godowns, quickly and cleanly, with our own loading and transport.',
+  },
+  {
+    id: 'motor-compressor-scrap',
+    title: 'Heavy Motor & Compressor Scrap',
+    image: '/images/services/motor-compressor.jpg',
+    desc: 'Burnt-out motors, compressors, transformers, pumps and electrical machinery of any size and condition. A single dead motor from a workshop or container loads from a plant shutdown — we pick them up, weigh them honestly and pay for them fairly. Heavy units are no problem: our men and machines handle all the lifting.',
+  },
+  {
+    id: 'cable-scrap',
+    title: 'Aluminium & Copper Cable Scrap',
+    image: '/images/services/cables.jpg',
+    desc: 'Armoured, insulated and bare cables in aluminium or copper, of any thickness and length. Cable scrap is bought by weight with honest recovery rates — no hidden cuts, no surprise deductions. From leftover project drums to dug-out old lines, we take it all and pay transparently.',
+  },
+  {
+    id: 'waste-paper',
+    title: 'Waste Paper',
+    image: '/images/services/waste-paper.jpg',
+    desc: 'Newspapers, books, cartons, office records and press waste — all types of waste paper, bought in any quantity. Our own baling machine compresses loose paper into neat, dense bales, which keeps handling clean and recycling efficient. Offices and presses can arrange regular scheduled pickups as well.',
+  },
+  {
+    id: 'mixed-industrial-scrap',
     title: 'Mixed Industrial Scrap',
-    blurb:
-      'Plant clean-outs, demolition recovery and general mixed scrap — surveyed, sorted and lifted end-to-end.',
-    image: '/images/materials/mixed.jpg',
+    image: '/images/services/mixed-industrial.jpg',
+    desc: "Plant clean-outs, demolition recovery and unsorted factory scrap of every description. Our team surveys the lot, sorts and grades each material, then lifts everything end-to-end with our own manpower and transport — you don't touch a thing. What looks like a headache pile in your yard becomes sorted, weighed, documented value.",
+  },
+  {
+    id: 'road-construction-scrap',
+    title: 'Road Construction Scrap',
+    image: '/images/services/road-construction.jpg',
+    desc: 'Barriers, rebar, plates, shuttering, machinery parts and leftover material from road and civil projects. Project sites need fast clearance, so we move in with our own lifting and transport and clear the ground quickly. Your next job starts on time — and every tonne cleared is weighed and paid for properly.',
+  },
+];
+
+const spotFlow = [
+  { step: 'Enquiry', note: 'Call or WhatsApp us with what you have.' },
+  { step: 'Site Survey', note: 'We visit and assess the material.' },
+  { step: 'Weight & Grade', note: 'Certified weighing, honest grading.' },
+  { step: 'Quote', note: 'Clear rate offered on the spot.' },
+  { step: 'Lift', note: 'Our team and transport clear it all.' },
+  { step: 'Payment', note: 'Prompt, documented payment.' },
+];
+
+const contractFlow = [
+  { step: 'Enquiry', note: 'Tell us about your ongoing scrap.' },
+  { step: 'Site Survey', note: 'We study volumes and site conditions.' },
+  { step: 'Rate Negotiation', note: 'Fair rates agreed openly.' },
+  { step: 'Contract', note: 'Rates locked for the full term.' },
+  { step: 'Scheduled Lifting', note: 'Regular pickups — your yard stays clear.' },
+  { step: 'Cycle Settlement', note: 'GST invoices, paid every cycle.' },
+];
+
+const audiences = [
+  { title: 'Mining Companies', note: 'End-of-life machinery and site scrap.' },
+  { title: 'Industrial Plants', note: 'Continuous production and plant scrap.' },
+  {
+    title: 'Road & Construction Contractors',
+    note: 'Site clearance and project scrap.',
+  },
+  { title: 'Demolition Projects', note: 'Full recovery, sorting and lifting.' },
+  {
+    title: 'Government Auctions (MSTC)',
+    note: 'Compliance-ready auction participation.',
+  },
+  {
+    title: 'Households & Local Sellers',
+    note: 'Any quantity, fair rates, easy pickup.',
   },
 ];
 ---
@@ -60,87 +125,190 @@ const materials = [
   />
 
   <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
-    <p class="mx-auto max-w-3xl text-center text-slate-industrial" data-reveal>
-      Industrial-scale scrap procurement from a Surguja-based operator — spot
-      purchases or fixed-rate contracts, always with certified weighment and
-      GST invoicing.
+    <p
+      class="mx-auto max-w-3xl text-center italic text-slate-industrial"
+      data-reveal
+    >
+      From a single household lot to year-long industrial contracts — we buy
+      every kind of scrap at fair, transparent rates, with certified weighing
+      and proper paperwork on every deal.
     </p>
   </section>
 
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {materials.map((m) => <MaterialCard {...m} />)}
-    </div>
+  <!-- Service detail rows (anchored from home cards & footer) -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-20 space-y-16">
+    {
+      services.map((s) => (
+        <div
+          id={s.id}
+          class="scroll-mt-36 grid items-center gap-6 lg:gap-12 lg:grid-cols-2"
+          data-reveal
+        >
+          <div>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-steel-charcoal">
+              {s.title}
+            </h2>
+            <div class="mt-3 h-1 w-14 rounded bg-copper-aged"></div>
+            <p class="mt-5 leading-relaxed text-slate-industrial">{s.desc}</p>
+          </div>
+          <div class="overflow-hidden rounded-lg shadow-sm aspect-[4/3]">
+            <img
+              src={s.image}
+              alt={s.title}
+              loading="lazy"
+              class="service-parallax h-full w-full object-cover will-change-transform"
+              style="transform: scale(1.18);"
+            />
+          </div>
+        </div>
+      ))
+    }
   </section>
 
-  <!-- Contractual pricing model -->
+  <!-- Workflows: spot & contract, side by side -->
   <section class="bg-surface">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
       <SectionHeading
-        title="The Contractual Pricing Model"
-        sub="For industrial, construction and road-building firms that generate scrap continuously, we fix rates for the contract duration — no renegotiation every lifting, no rate surprises."
+        title="Our Operation Workflows"
+        sub="Two ways to work with us — a one-time spot purchase, or a fixed-rate contract."
+        center
       />
-      <div class="mt-8 grid gap-6 sm:grid-cols-3" data-reveal>
-        <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
-          <p class="font-mono text-copper-aged font-medium">01</p>
-          <h3 class="mt-2 font-heading font-semibold">Rates locked for the term</h3>
-          <p class="mt-2 text-sm text-slate-industrial">
-            Per-material rates agreed once and held for the full contract
-            period, regardless of market movement.
-          </p>
-        </div>
-        <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
-          <p class="font-mono text-copper-aged font-medium">02</p>
-          <h3 class="mt-2 font-heading font-semibold">Scheduled lifting</h3>
-          <p class="mt-2 text-sm text-slate-industrial">
-            Liftings on a fixed schedule or on call — our transport, our
-            manpower, your yard stays clear.
-          </p>
-        </div>
-        <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
-          <p class="font-mono text-copper-aged font-medium">03</p>
-          <h3 class="mt-2 font-heading font-semibold">Cycle settlement</h3>
-          <p class="mt-2 text-sm text-slate-industrial">
-            Weighbridge slips and GST invoices per consignment, settled on the
-            agreed payment cycle.
-          </p>
-        </div>
+      <div class="mt-12 grid gap-10 lg:grid-cols-2">
+        {
+          [
+            { title: 'Spot Purchase Flow', flow: spotFlow },
+            { title: 'Contract Flow (rate fixed for term)', flow: contractFlow },
+          ].map(({ title, flow }) => (
+            <div
+              class="rounded-lg border border-copper-aged/15 bg-white p-8"
+              data-reveal
+            >
+              <h3 class="font-heading text-xl font-bold text-steel-charcoal">
+                {title}
+              </h3>
+              <ol class="relative mt-8 space-y-7">
+                <div
+                  class="absolute left-4 top-2 bottom-2 w-px bg-copper-aged/30"
+                  aria-hidden="true"
+                />
+                {flow.map((item, i) => (
+                  <li class="relative flex gap-5">
+                    <span class="font-heading z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-copper-aged text-xs font-bold text-white shadow">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h4 class="font-heading font-bold text-steel-charcoal">
+                        {item.step}
+                      </h4>
+                      <p class="mt-0.5 text-sm text-slate-industrial">
+                        {item.note}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- Workflows -->
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 space-y-12">
+  <!-- Contractual pricing model -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
     <SectionHeading
-      title="Our Operation Workflows"
-      sub="Two ways to work with us — one-time spot purchase, or a fixed-rate contract."
+      title="The Contractual Pricing Model"
+      sub="For firms that generate scrap continuously, we fix rates for the contract duration — no renegotiation every lifting, no rate surprises."
     />
-    <WorkflowDiagram
-      title="Spot Purchase Flow"
-      steps={['Enquiry', 'Site Survey', 'Weight & Grade', 'Quote', 'Lift', 'Payment']}
-    />
-    <WorkflowDiagram
-      title="Contract Flow (rate fixed for term)"
-      steps={['Enquiry', 'Site Survey', 'Rate Negotiation', 'Contract', 'Scheduled Lifting', 'Cycle Settlement']}
-    />
+    <div class="mt-8 grid gap-6 sm:grid-cols-3" data-reveal>
+      <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
+        <p class="font-mono text-copper-aged font-medium">01</p>
+        <h3 class="mt-2 font-heading font-semibold">Rates locked for the term</h3>
+        <p class="mt-2 text-sm text-slate-industrial">
+          Per-material rates agreed once and held for the full contract
+          period, regardless of market movement.
+        </p>
+      </div>
+      <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
+        <p class="font-mono text-copper-aged font-medium">02</p>
+        <h3 class="mt-2 font-heading font-semibold">Scheduled lifting</h3>
+        <p class="mt-2 text-sm text-slate-industrial">
+          Liftings on a fixed schedule or on call — our transport, our
+          manpower, your yard stays clear.
+        </p>
+      </div>
+      <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
+        <p class="font-mono text-copper-aged font-medium">03</p>
+        <h3 class="mt-2 font-heading font-semibold">Cycle settlement</h3>
+        <p class="mt-2 text-sm text-slate-industrial">
+          Weighbridge slips and GST invoices per consignment, settled on the
+          agreed payment cycle.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- Who this is for -->
+  <!-- Who we work with -->
   <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16">
-    <div
-      class="rounded-lg border border-copper-aged/30 bg-white p-8"
-      data-reveal
-    >
-      <h3 class="font-heading font-semibold text-xl">Who this is for</h3>
-      <p class="mt-3 text-slate-industrial">
-        Mining sites · Industrial plants · Road & construction contractors ·
-        Demolition projects · Government auctions (MSTC portal)
-      </p>
+    <SectionHeading
+      title="Who We Work With"
+      sub="From the biggest mine to a single household — every seller matters."
+      center
+    />
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        audiences.map((a) => (
+          <div
+            class="rounded-lg border border-copper-aged/15 bg-surface p-6"
+            data-reveal
+          >
+            <h3 class="font-heading font-bold text-steel-charcoal">
+              {a.title}
+            </h3>
+            <p class="mt-1 text-sm text-slate-industrial">{a.note}</p>
+          </div>
+        ))
+      }
     </div>
   </section>
 
   <CTABand
-    heading="Discuss a materials contract"
-    message="Hello Shahin Scrap, I'd like to discuss a materials scrap contract."
+    heading="Have scrap to sell? A pickup or a full contract — let's talk."
+    message="Hello Shahin Scrap, I have scrap to sell and would like to discuss."
   />
 </BaseLayout>
+
+<script>
+  // Parallax: service images drift vertically while scrolling past them.
+  // Images are pre-scaled to 1.18 so ±8% translation never shows edges.
+  const imgs = [
+    ...document.querySelectorAll<HTMLElement>('.service-parallax'),
+  ];
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+  if (imgs.length && !reduceMotion) {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      for (const img of imgs) {
+        const box = img.parentElement!.getBoundingClientRect();
+        if (box.bottom < 0 || box.top > vh) continue;
+        // -1 (row entering at bottom) .. +1 (row leaving at top)
+        const progress =
+          (box.top + box.height / 2 - vh / 2) / (vh / 2 + box.height / 2);
+        img.style.transform = `translateY(${(-progress * 8).toFixed(2)}%) scale(1.18)`;
+      }
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+</script>

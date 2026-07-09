@@ -2,23 +2,86 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import MaterialCard from '../components/MaterialCard.astro';
-import WorkflowDiagram from '../components/WorkflowDiagram.astro';
 import CTABand from '../components/CTABand.astro';
+
+// Anchor ids are shared with the home-page cards and footer links.
+const categories = [
+  {
+    id: 'mining-machinery-scrap',
+    title: 'Mining Machinery Scrap',
+    area: 'Serviced anywhere in India',
+    image: '/images/services/mining-machinery.jpg',
+    desc: 'Dozers, Poclain, excavators, loaders and dumpers that have finished their working life. We take up auction lots and direct contracts anywhere in India — our team dismantles the machines safely at your site, and every tonne is weighed and documented before it leaves. Heavy cutting, lifting and transport are all handled by us.',
+  },
+  {
+    id: 'heavy-truck-scrap',
+    title: 'Heavy Truck Scrap',
+    area: 'Serviced anywhere in India',
+    image: '/images/services/heavy-truck.jpg',
+    desc: 'Retired tippers, dumpers and heavy haulage trucks bought outright. Our own gas-cutters and cranes break them down, and the material moves over certified weighbridges with GST invoices and disposal papers. You hand over the keys — we handle everything after that.',
+  },
+  {
+    id: 'construction-equipment',
+    title: 'Construction Equipment',
+    area: 'Serviced anywhere in India',
+    image: '/images/services/construction-equipment.jpg',
+    desc: 'Rollers, mixers, cranes, breakers and plant machinery past repair. We survey the equipment where it stands, agree a fair value, then dismantle and clear it from your site — leaving the ground ready for whatever comes next.',
+  },
+  {
+    id: 'commercial-trucks',
+    title: 'Commercial Trucks & Trailers',
+    area: 'Surguja & adjacent districts',
+    image: '/images/services/commercial-trucks.jpg',
+    desc: 'End-of-life commercial trucks, trailers and buses — bought as they stand, towed away and scrapped with complete paperwork. This service runs within Surguja and its adjacent districts.',
+  },
+  {
+    id: 'cars-two-wheelers',
+    title: 'Old Cars & Two-Wheelers',
+    area: 'Surguja district only',
+    image: '/images/hero/vehicle-claw.jpg',
+    desc: "Got an old car or bike rusting outside your home? Call or WhatsApp us — we buy old cars and two-wheelers at fair value and scrap them the proper way, paperwork included. This service is available within Surguja district.",
+  },
+];
+
+const workflow = [
+  {
+    step: 'On-site Assessment',
+    note: 'We inspect the vehicle or fleet where it stands.',
+  },
+  {
+    step: 'Valuation',
+    note: 'Fair value agreed from weight, condition and market rates.',
+  },
+  {
+    step: 'Contract',
+    note: 'Terms and rates fixed in writing before work starts.',
+  },
+  {
+    step: 'Cutting & Lifting',
+    note: 'Our cutters, cranes and transport do all the heavy work.',
+  },
+  {
+    step: 'Disposal Documentation',
+    note: 'GST invoices, weighbridge slips and disposal certificates handed over.',
+  },
+];
 ---
 
 <BaseLayout title="Vehicle & Heavy Equipment Scrap">
   <PageHero
     title="Vehicle & Equipment Scrap"
-    sub="End-of-life mining vehicles, dismantled under formal contract"
+    sub="From mining machines to the old bike in your courtyard"
     image="/images/vehicles/construction.jpg"
   />
 
   <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
-    <p class="mx-auto max-w-3xl text-center text-slate-industrial" data-reveal>
-      End-of-life mining and heavy-equipment scrapping under formal contracts —
-      on-site dismantling, certified weighment, and complete disposal
-      documentation.
+    <p
+      class="mx-auto max-w-3xl text-center italic text-slate-industrial"
+      data-reveal
+    >
+      From a hundred-tonne excavator to the old bike in your courtyard — if
+      it's done running, we'll scrap it properly: safe dismantling, honest
+      weighing and full paperwork.
     </p>
     <div
       class="mt-8 rounded-lg border-l-4 border-copper-aged bg-white p-5 shadow-sm"
@@ -26,43 +89,79 @@ import CTABand from '../components/CTABand.astro';
     >
       <p class="text-sm text-slate-industrial">
         <strong class="text-steel-charcoal">Service area note:</strong> mining
-        vehicle and heavy-equipment contracts are serviced across regions.
-        Commercial truck and trailer scrap is handled
-        <strong class="text-steel-charcoal"
-          >within Surguja and adjacent districts only</strong
-        >.
+        machinery, heavy trucks and construction equipment are serviced
+        <strong class="text-steel-charcoal">anywhere in India</strong>.
+        Commercial trucks & trailers are handled within
+        <strong class="text-steel-charcoal">Surguja and adjacent districts</strong>,
+        and old cars & two-wheelers within
+        <strong class="text-steel-charcoal">Surguja district only</strong>.
       </p>
     </div>
   </section>
 
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <MaterialCard
-        title="Mining Vehicles"
-        blurb="Dozers, Poclain (excavators), dumpers and loaders — auction lots or direct contracts, serviced pan-region."
-        image="/images/vehicles/mining.jpg"
-      />
-      <MaterialCard
-        title="Construction Equipment"
-        blurb="Retired construction machinery, cranes and plant equipment — dismantled and cleared from site, serviced pan-region."
-        image="/images/vehicles/construction.jpg"
-      />
-      <MaterialCard
-        title="Commercial Trucks & Trailers"
-        blurb="End-of-life highway trucks and trailers — Surguja and adjacent districts only."
-        image="/images/vehicles/trucks.jpg"
-      />
-    </div>
+  <!-- Category detail rows (anchored from home cards & footer) -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-20 space-y-16">
+    {
+      categories.map((c) => (
+        <div
+          id={c.id}
+          class="scroll-mt-36 grid items-center gap-6 lg:gap-12 lg:grid-cols-2"
+          data-reveal
+        >
+          <div>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-steel-charcoal">
+              {c.title}
+            </h2>
+            <div class="mt-3 h-1 w-14 rounded bg-copper-aged"></div>
+            <p class="mt-4 font-heading inline-block rounded-sm bg-copper-aged/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-copper-aged">
+              {c.area}
+            </p>
+            <p class="mt-4 leading-relaxed text-slate-industrial">{c.desc}</p>
+          </div>
+          <div class="overflow-hidden rounded-lg shadow-sm aspect-[4/3]">
+            <img
+              src={c.image}
+              alt={c.title}
+              loading="lazy"
+              class="service-parallax h-full w-full object-cover will-change-transform"
+              style="transform: scale(1.18);"
+            />
+          </div>
+        </div>
+      ))
+    }
   </section>
 
+  <!-- Workflow -->
   <section class="bg-surface">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
-      <SectionHeading title="Vehicle Scrapping Workflow" />
-      <div class="mt-8">
-        <WorkflowDiagram
-          steps={['On-site Assessment', 'Valuation', 'Contract', 'Cutting & Lifting', 'Regulatory Disposal Documentation']}
-        />
-      </div>
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-16">
+      <SectionHeading
+        title="Vehicle Scrapping Workflow"
+        sub="Five steps from standing vehicle to settled paperwork."
+        center
+      />
+      <ol class="relative mt-12 space-y-9">
+        <div
+          class="absolute left-4 top-2 bottom-2 w-px bg-copper-aged/30"
+          aria-hidden="true"
+        >
+        </div>
+        {
+          workflow.map((item, i) => (
+            <li class="relative flex gap-5" data-reveal>
+              <span class="font-heading z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-copper-aged text-xs font-bold text-white shadow">
+                {i + 1}
+              </span>
+              <div>
+                <h4 class="font-heading font-bold text-steel-charcoal">
+                  {item.step}
+                </h4>
+                <p class="mt-0.5 text-sm text-slate-industrial">{item.note}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </section>
 
@@ -84,8 +183,42 @@ import CTABand from '../components/CTABand.astro';
   </section>
 
   <CTABand
-    heading="Have equipment to decommission?"
-    sub="Send us the vehicle list — we'll survey, value, and quote."
-    message="Hello Shahin Scrap, I'd like to discuss vehicle/equipment scrapping."
+    heading="Have a vehicle or machine to scrap?"
+    sub="From a single bike to a full fleet — send us the details and we'll survey, value and quote."
+    message="Hello Shahin Scrap, I'd like to discuss scrapping a vehicle/equipment."
   />
 </BaseLayout>
+
+<script>
+  // Parallax: images drift vertically while scrolling past them.
+  // Pre-scaled to 1.18 so ±8% translation never shows edges.
+  const imgs = [
+    ...document.querySelectorAll<HTMLElement>('.service-parallax'),
+  ];
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+  if (imgs.length && !reduceMotion) {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      for (const img of imgs) {
+        const box = img.parentElement!.getBoundingClientRect();
+        if (box.bottom < 0 || box.top > vh) continue;
+        const progress =
+          (box.top + box.height / 2 - vh / 2) / (vh / 2 + box.height / 2);
+        img.style.transform = `translateY(${(-progress * 8).toFixed(2)}%) scale(1.18)`;
+      }
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+</script>

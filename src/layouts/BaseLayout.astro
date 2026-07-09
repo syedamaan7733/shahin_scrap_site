@@ -216,28 +216,27 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
           >
             Services
           </h3>
-          <!-- TODO: point each link at its section anchor once the services page is finalised -->
           <ul class="mt-4 space-y-2 text-sm">
             {
               [
-                'All Types of Plastic Scrap',
-                'All Types of Tyre Scrap',
-                'All Types of Waste Paper',
-                'Aluminium & Copper Cable Scrap',
-                'Aluminium Scrap',
-                'Brass Scrap',
-                'Copper Scrap',
-                'Heavy Motor & Compressor Scrap',
-                'Heavy Truck Scrap',
-                'Iron Scrap',
-                'Mining Machinery Scrap (Poclain, Loader, Excavator)',
-                'Mixed Industrial Scrap',
-                'Road Construction Scrap',
-                'Stainless Steel Scrap',
+                { label: 'All Types of Plastic Scrap', href: '/services#plastic-scrap' },
+                { label: 'All Types of Tyre Scrap', href: '/services#tyre-scrap' },
+                { label: 'All Types of Waste Paper', href: '/services#waste-paper' },
+                { label: 'Aluminium & Copper Cable Scrap', href: '/services#cable-scrap' },
+                { label: 'Aluminium Scrap', href: '/services#aluminium-scrap' },
+                { label: 'Brass Scrap', href: '/services#brass-scrap' },
+                { label: 'Copper Scrap', href: '/services#copper-scrap' },
+                { label: 'Heavy Motor & Compressor Scrap', href: '/services#motor-compressor-scrap' },
+                { label: 'Heavy Truck Scrap', href: '/vehicle-scrap#heavy-truck-scrap' },
+                { label: 'Iron Scrap', href: '/services#iron-scrap' },
+                { label: 'Mining Machinery Scrap (Poclain, Loader, Excavator)', href: '/vehicle-scrap#mining-machinery-scrap' },
+                { label: 'Mixed Industrial Scrap', href: '/services#mixed-industrial-scrap' },
+                { label: 'Road Construction Scrap', href: '/services#road-construction-scrap' },
+                { label: 'Stainless Steel Scrap', href: '/services#stainless-steel-scrap' },
               ].map((service) => (
                 <li>
                   <a
-                    href="/services"
+                    href={service.href}
                     class="flex items-start gap-2 hover:text-white transition-colors duration-200"
                   >
                     <svg
@@ -251,7 +250,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
                     >
                       <path d="m9 6 6 6-6 6" />
                     </svg>
-                    {service}
+                    {service.label}
                   </a>
                 </li>
               ))
