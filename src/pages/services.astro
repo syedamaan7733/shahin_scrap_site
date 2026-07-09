@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import MaterialCard from '../components/MaterialCard.astro';
 import WorkflowDiagram from '../components/WorkflowDiagram.astro';
@@ -52,11 +53,18 @@ const materials = [
 ---
 
 <BaseLayout title="Services — Metals, Materials & Contractual Scrap">
+  <PageHero
+    title="Our Services"
+    sub="Metals, materials & contractual scrap"
+    image="/images/materials/mixed.jpg"
+  />
+
   <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
-    <SectionHeading
-      title="Metals, Materials & Contractual Scrap"
-      sub="Industrial-scale scrap procurement from a Surguja-based operator — spot purchases or fixed-rate contracts, always with certified weighment and GST invoicing."
-    />
+    <p class="mx-auto max-w-3xl text-center text-slate-industrial" data-reveal>
+      Industrial-scale scrap procurement from a Surguja-based operator — spot
+      purchases or fixed-rate contracts, always with certified weighment and
+      GST invoicing.
+    </p>
   </section>
 
   <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16">
@@ -66,7 +74,7 @@ const materials = [
   </section>
 
   <!-- Contractual pricing model -->
-  <section class="bg-gold-pale/30">
+  <section class="bg-surface">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
       <SectionHeading
         title="The Contractual Pricing Model"
@@ -74,7 +82,7 @@ const materials = [
       />
       <div class="mt-8 grid gap-6 sm:grid-cols-3" data-reveal>
         <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
-          <p class="font-mono text-amber-signal font-medium">01</p>
+          <p class="font-mono text-copper-aged font-medium">01</p>
           <h3 class="mt-2 font-heading font-semibold">Rates locked for the term</h3>
           <p class="mt-2 text-sm text-slate-industrial">
             Per-material rates agreed once and held for the full contract
@@ -82,7 +90,7 @@ const materials = [
           </p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
-          <p class="font-mono text-amber-signal font-medium">02</p>
+          <p class="font-mono text-copper-aged font-medium">02</p>
           <h3 class="mt-2 font-heading font-semibold">Scheduled lifting</h3>
           <p class="mt-2 text-sm text-slate-industrial">
             Liftings on a fixed schedule or on call — our transport, our
@@ -90,7 +98,7 @@ const materials = [
           </p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm border border-bronze-deep/10">
-          <p class="font-mono text-amber-signal font-medium">03</p>
+          <p class="font-mono text-copper-aged font-medium">03</p>
           <h3 class="mt-2 font-heading font-semibold">Cycle settlement</h3>
           <p class="mt-2 text-sm text-slate-industrial">
             Weighbridge slips and GST invoices per consignment, settled on the

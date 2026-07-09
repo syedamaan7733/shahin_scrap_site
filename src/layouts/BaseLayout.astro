@@ -23,137 +23,182 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Archivo:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Droid+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>
   <body class="min-h-screen flex flex-col">
-    <header
-      class="fixed top-0 inset-x-0 z-50 bg-canvas/95 backdrop-blur border-b-2 border-bronze-deep"
-    >
-      <div
-        class="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4"
-      >
-        <a href="/" class="flex items-center gap-2 shrink-0">
-          <img src="/logo.png" alt={`${SITE.name} logo`} class="h-11 w-auto" />
-          <span
-            class="font-logo font-bold uppercase tracking-[0.08em] text-lg text-steel-charcoal"
-            >{SITE.name}</span
-          >
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-6">
-          {
-            NAV.map((item) => (
-              <a
-                href={item.href}
-                class:list={[
-                  'text-sm font-medium hover:text-copper-aged transition-colors',
-                  currentPath === item.href
-                    ? 'text-copper-aged'
-                    : 'text-steel-charcoal',
-                ]}
-              >
-                {item.label}
-              </a>
-            ))
-          }
-        </nav>
-
-        <div class="flex items-center gap-2">
-          <a
-            href={telLink}
-            class="hidden sm:inline-flex items-center justify-center h-10 w-10 rounded-full border border-copper-aged text-copper-aged hover:bg-copper-aged hover:text-canvas transition-colors"
-            aria-label={`Call ${SITE.phoneDisplay}`}
-          >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"
-              ></path>
-            </svg>
+    <header class="fixed top-0 inset-x-0 z-50">
+      <!-- Top bar: logo + credentials -->
+      <div class="bg-canvas">
+        <div
+          class="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4"
+        >
+          <a href="/" class="flex items-center shrink-0">
+            <img
+              src="/images/logo/logo.png"
+              alt={`${SITE.name} — Since 1985`}
+              class="h-13 w-auto"
+            />
           </a>
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener"
-            class="inline-flex items-center gap-2 rounded bg-amber-signal px-3 sm:px-4 py-2 text-sm font-semibold text-steel-charcoal hover:scale-105 transition-transform"
+          <div
+            class="flex items-center gap-3 sm:gap-5 font-heading text-xs font-bold uppercase tracking-wider text-navy-deep"
           >
-            WhatsApp
-          </a>
-          <button
-            id="nav-toggle"
-            class="lg:hidden inline-flex items-center justify-center h-10 w-10 text-steel-charcoal"
-            aria-label="Toggle menu"
-            aria-expanded="false"
-          >
-            <svg
-              class="h-6 w-6"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
+            <span class="hidden sm:inline">{SITE.motto}</span>
+            <span
+              class="hidden sm:block h-4 w-px bg-navy-deep/20"
+              aria-hidden="true"></span>
+            <a
+              href={telLink}
+              class="hover:text-copper-aged transition-colors tabular-nums"
+              >{SITE.phoneDisplay}</a
             >
-              <path d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
+          </div>
         </div>
       </div>
 
-      <nav
-        id="nav-mobile"
-        class="hidden lg:hidden border-t border-bronze-deep/20 bg-canvas px-4 py-3"
+      <!-- Nav bar -->
+      <div class="bg-ink">
+        <div
+          class="mx-auto max-w-7xl px-4 sm:px-6 h-12 flex items-center justify-between gap-4"
+        >
+          <nav class="hidden lg:flex items-stretch gap-8 self-stretch">
+            {
+              NAV.map((item) => (
+                <a
+                  href={item.href}
+                  class:list={[
+                    'relative inline-flex items-center font-heading text-xs font-semibold uppercase tracking-wider transition-colors',
+                    currentPath === item.href
+                      ? 'text-brass-light after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-brass-light'
+                      : 'text-white/90 hover:text-brass-light',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              ))
+            }
+          </nav>
+
+          <div class="ml-auto flex items-center gap-2">
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener"
+              class="font-heading inline-flex items-center gap-2 rounded-sm bg-copper-aged px-3 sm:px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white hover:brightness-110 transition"
+            >
+              WhatsApp
+            </a>
+            <button
+              id="nav-toggle"
+              class="lg:hidden inline-flex items-center justify-center h-10 w-10 text-white"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+            >
+              <svg
+                class="nav-icon h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path class="nav-icon-top" d="M4 6h16"></path>
+                <path class="nav-icon-mid" d="M4 12h16"></path>
+                <path class="nav-icon-bot" d="M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Full-screen mobile menu (outside header: its backdrop-blur would trap position:fixed) -->
+    <nav
+      id="nav-mobile"
+      class="nav-sheet lg:hidden bg-canvas flex flex-col"
+      aria-label="Mobile menu"
+    >
+      <div
+        class="flex-1 flex flex-col justify-center overflow-y-auto px-6 pt-32 pb-6 mx-auto w-full max-w-md"
       >
         {
-          NAV.map((item) => (
+          NAV.map((item, i) => (
             <a
               href={item.href}
               class:list={[
-                'block py-2 text-sm font-medium',
+                'nav-sheet-item flex items-baseline gap-4 border-b border-bronze-deep/10 py-4 font-heading font-bold uppercase tracking-wide text-2xl',
                 currentPath === item.href
                   ? 'text-copper-aged'
                   : 'text-steel-charcoal',
               ]}
+              style={`--stagger: ${i}`}
             >
+              <span class="font-mono text-sm text-copper-aged/60 tabular-nums">
+                {String(i + 1).padStart(2, '0')}
+              </span>
               {item.label}
             </a>
           ))
         }
-      </nav>
-    </header>
+      </div>
+      <div
+        class="nav-sheet-item px-6 pb-10 mx-auto w-full max-w-md"
+        style={`--stagger: ${NAV.length}`}
+      >
+        <div class="flex flex-wrap gap-3">
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener"
+            class="font-heading inline-flex items-center justify-center rounded bg-copper-aged px-5 py-2.5 text-sm font-semibold text-white"
+          >
+            WhatsApp
+          </a>
+          <a
+            href={telLink}
+            class="font-heading inline-flex items-center justify-center rounded border border-copper-aged px-5 py-2.5 text-sm font-semibold text-copper-aged"
+          >
+            Call {SITE.phoneDisplay}
+          </a>
+        </div>
+        <p class="mt-5 text-sm text-slate-industrial/80">{SITE.address}</p>
+      </div>
+    </nav>
 
-    <main class="flex-1 pt-16">
+    <main class="flex-1 pt-28">
       <slot />
     </main>
 
-    <footer class="bg-slate-industrial text-gold-pale">
+    <footer class="bg-steel-charcoal text-white/70">
       <div
-        class="mx-auto max-w-7xl px-4 sm:px-6 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
+        class="mx-auto max-w-7xl px-4 sm:px-6 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
       >
         <div>
-          <div class="flex items-center gap-2">
-            <img
-              src="/logo.png"
-              alt={`${SITE.name} logo`}
-              class="h-12 w-auto"
-            />
-            <span
-              class="font-logo font-bold uppercase tracking-[0.08em] text-lg"
-              >{SITE.name}</span
-            >
-          </div>
-          <p class="mt-3 text-sm text-brass-light">{SITE.motto}</p>
-          <p class="mt-1 text-sm text-brass-light/80">
-            Metal, material & vehicle scrap — mining, industrial and government
-            sectors.
+          <img
+            src="/images/logo/logo-gold.png"
+            alt={`${SITE.name} — Since 1985`}
+            class="h-20 w-auto"
+          />
+          <p class="mt-4 text-sm leading-relaxed">
+            Shahin Scrap was started in the year 1985. Metal, material &
+            vehicle scrap — mining, industrial and government sectors.
           </p>
         </div>
         <div>
-          <h3 class="font-heading font-semibold text-canvas">Quick Links</h3>
-          <ul class="mt-3 space-y-2 text-sm">
+          <h3
+            class="font-heading text-xs font-bold uppercase tracking-widest text-brass-light"
+          >
+            Quick Links
+          </h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
             {
               NAV.filter((i) => i.href !== '/').map((item) => (
                 <li>
-                  <a href={item.href} class="hover:text-canvas">
+                  <a
+                    href={item.href}
+                    class="hover:text-white transition-colors duration-200"
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -162,10 +207,12 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
           </ul>
         </div>
         <div>
-          <h3 class="font-heading font-semibold text-canvas">
+          <h3
+            class="font-heading text-xs font-bold uppercase tracking-widest text-brass-light"
+          >
             Materials Handled
           </h3>
-          <ul class="mt-3 space-y-2 text-sm">
+          <ul class="mt-4 space-y-2.5 text-sm">
             <li>Iron & Steel · Copper · Brass</li>
             <li>Aluminium · Plastic · Tyres</li>
             <li>Mining & Construction Vehicles</li>
@@ -173,11 +220,18 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
           </ul>
         </div>
         <div>
-          <h3 class="font-heading font-semibold text-canvas">Contact</h3>
-          <ul class="mt-3 space-y-2 text-sm">
+          <h3
+            class="font-heading text-xs font-bold uppercase tracking-widest text-brass-light"
+          >
+            Reach Us
+          </h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li class="font-semibold text-white">{SITE.name}</li>
             <li>{SITE.address}</li>
             <li>
-              <a href={telLink} class="hover:text-canvas"
+              <a
+                href={telLink}
+                class="hover:text-white transition-colors duration-200"
                 >{SITE.phoneDisplay}</a
               >
             </li>
@@ -186,22 +240,22 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
                 href={whatsappLink()}
                 target="_blank"
                 rel="noopener"
-                class="hover:text-canvas">Chat on WhatsApp</a
+                class="hover:text-white transition-colors duration-200"
+                >Chat on WhatsApp</a
               >
             </li>
             <li>{SITE.hours}</li>
           </ul>
         </div>
       </div>
-      <div class="border-t border-gold-pale/20">
+      <div class="border-t border-white/10">
         <div
-          class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-2 text-xs text-brass-light/70"
+          class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-wrap items-center justify-center gap-2 text-xs text-white/50"
         >
           <p>
-            © {new Date().getFullYear()}
+            Copyright © {new Date().getFullYear()}
             {SITE.name}. {SITE.motto}.
           </p>
-          <p>English · <span title="Coming soon">हिन्दी (soon)</span></p>
         </div>
       </div>
     </footer>
@@ -211,9 +265,19 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <script>
       const toggle = document.getElementById('nav-toggle');
       const mobileNav = document.getElementById('nav-mobile');
-      toggle?.addEventListener('click', () => {
-        const open = mobileNav?.classList.toggle('hidden') === false;
-        toggle.setAttribute('aria-expanded', String(open));
+      const setMenu = (open: boolean) => {
+        mobileNav?.classList.toggle('open', open);
+        toggle?.setAttribute('aria-expanded', String(open));
+        toggle?.classList.toggle('menu-open', open);
+        document.body.classList.toggle('overflow-hidden', open);
+      };
+      toggle?.addEventListener('click', () =>
+        setMenu(!mobileNav?.classList.contains('open'))
+      );
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav?.classList.contains('open')) {
+          setMenu(false);
+        }
       });
 
       const observer = new IntersectionObserver(

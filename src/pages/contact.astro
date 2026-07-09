@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
+import PageHero from '../components/PageHero.astro';
 import CTAButtons from '../components/CTAButtons.astro';
 import { SITE, telLink, whatsappLink } from '../config/site';
 
@@ -8,14 +8,13 @@ const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapsQue
 ---
 
 <BaseLayout title="Contact Us">
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
-    <SectionHeading
-      title="Contact Us"
-      sub="One number for everything — chat or call, whichever works for you."
-    />
-  </section>
+  <PageHero
+    title="Contact Us"
+    sub="Get in touch"
+    image="/images/materials/iron.jpg"
+  />
 
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16">
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-16">
     <div
       class="rounded-lg bg-slate-industrial p-8 sm:p-12 text-center text-canvas"
       data-reveal
@@ -54,7 +53,7 @@ const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapsQue
           href={whatsappLink()}
           target="_blank"
           rel="noopener"
-          class="mt-3 inline-block font-semibold text-copper-aged hover:text-amber-signal"
+          class="mt-3 inline-block font-semibold text-copper-aged hover:text-bronze-warm"
           >Start the chat →</a
         >
       </div>

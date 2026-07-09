@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  sub?: string;
+  image: string;
+}
+const { title, sub, image } = Astro.props;
+---
+
+<section
+  class="relative flex min-h-[260px] items-center justify-center bg-cover bg-center sm:min-h-[320px]"
+  style={`background-image: linear-gradient(rgba(16,14,12,0.66), rgba(16,14,12,0.66)), url('${image}');`}
+>
+  <div class="px-4 py-16 text-center">
+    <h1
+      class="font-heading text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+    >
+      {title}
+    </h1>
+    {
+      sub && (
+        <p class="mt-4 font-serif text-lg italic text-white/85">{sub}</p>
+      )
+    }
+  </div>
+</section>

@@ -9,15 +9,17 @@
   --color-gold-pale: #e0c9a6;
 
   /* Supporting */
-  --color-steel-charcoal: #2b2622;
-  --color-slate-industrial: #3d3b38;
-  --color-canvas: #f7f4ef;
-  --color-amber-signal: #d4881f;
+  --color-steel-charcoal: #1f1f1f;
+  --color-slate-industrial: #262626;
+  --color-ink: #1a1a1a;
+  --color-navy-deep: #12213f;
+  --color-canvas: #ffffff;
+  --color-surface: #f2f2f2;
 
   /* Fonts */
-  --font-logo: 'Oswald', sans-serif;
-  --font-heading: 'Archivo', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-serif: 'Droid Serif', Georgia, serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
 
@@ -41,6 +43,16 @@ body {
   color: var(--color-steel-charcoal);
 }
 
+h1,
+h2,
+h3,
+h4 {
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1;
+}
+
 /* ---------- Parallax hero ---------- */
 .parallax-bg {
   background-attachment: fixed;
@@ -52,6 +64,92 @@ body {
   .parallax-bg {
     background-attachment: scroll;
   }
+}
+
+/* ---------- Hero carousel ---------- */
+.hero-carousel {
+  /* let vertical scroll through, keep horizontal pans for swiping */
+  touch-action: pan-y;
+}
+.carousel-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.carousel-bg.active {
+  opacity: 1;
+}
+@media (hover: none), (max-width: 768px) {
+  .carousel-bg {
+    background-attachment: scroll;
+  }
+}
+.carousel-track {
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: rgba(247, 244, 239, 0.4);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+.carousel-dot.active {
+  background: var(--color-gold-pale);
+  transform: scale(1.35);
+}
+
+/* ---------- Full-screen mobile menu sheet ---------- */
+.nav-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 40; /* under the z-50 header so logo + close button stay visible */
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.5s;
+}
+.nav-sheet.open {
+  transform: translateY(0);
+  visibility: visible;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-sheet-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+.nav-sheet.open .nav-sheet-item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(0.18s + var(--stagger, 0) * 0.05s);
+}
+
+/* ---------- Hamburger -> X morph ---------- */
+.nav-icon path {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 0.3s ease,
+    opacity 0.2s ease;
+}
+.menu-open .nav-icon-top {
+  transform: translateY(6px) rotate(45deg);
+}
+.menu-open .nav-icon-mid {
+  opacity: 0;
+}
+.menu-open .nav-icon-bot {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ---------- Scroll reveal ---------- */
@@ -118,5 +216,12 @@ body {
   }
   .wa-pulse {
     animation: none;
+  }
+  .carousel-track,
+  .carousel-bg,
+  .nav-icon path,
+  .nav-sheet,
+  .nav-sheet-item {
+    transition: none;
   }
 }

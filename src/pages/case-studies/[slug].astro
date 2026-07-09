@@ -16,31 +16,30 @@ const { Content } = await render(cs);
 ---
 
 <BaseLayout title={cs.data.title} description={cs.data.scope}>
-  <section class="relative">
-    <div class="aspect-[21/9] max-h-[420px] w-full overflow-hidden bg-brass-light/20">
-      <img
-        src={cs.data.image}
-        alt={cs.data.title}
-        class="h-full w-full object-cover"
-      />
+  <section
+    class="relative flex min-h-[300px] items-center justify-center bg-cover bg-center sm:min-h-[380px]"
+    style={`background-image: linear-gradient(rgba(16,14,12,0.66), rgba(16,14,12,0.66)), url('${cs.data.image}');`}
+  >
+    <div class="px-4 py-16 text-center">
+      <p
+        class="font-heading text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
+      >
+        {cs.data.sector}
+      </p>
+      <h1
+        class="mx-auto mt-4 max-w-3xl font-heading text-3xl font-extrabold tracking-tight text-white sm:text-5xl"
+      >
+        {cs.data.title}
+      </h1>
     </div>
   </section>
 
   <section class="mx-auto max-w-3xl px-4 sm:px-6 py-12">
     <a
       href="/case-studies"
-      class="text-sm font-semibold text-copper-aged hover:text-amber-signal"
+      class="text-sm font-semibold text-copper-aged hover:text-bronze-warm"
       >← All case studies</a
     >
-    <span
-      class="mt-6 block w-fit rounded bg-copper-aged/10 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-copper-aged"
-      >{cs.data.sector}</span
-    >
-    <h1
-      class="mt-4 font-heading font-bold text-3xl sm:text-4xl text-steel-charcoal"
-    >
-      {cs.data.title}
-    </h1>
 
     <div
       class="mt-8 grid grid-cols-3 gap-4 rounded-lg border border-bronze-deep/15 bg-white p-6"
@@ -48,7 +47,7 @@ const { Content } = await render(cs);
       {
         cs.data.stats.map((s) => (
           <div class="text-center">
-            <p class="font-mono text-xl sm:text-2xl text-amber-signal tabular-nums">
+            <p class="font-mono text-xl sm:text-2xl text-copper-aged tabular-nums">
               {s.value}
             </p>
             <p class="mt-1 text-xs uppercase tracking-wide text-slate-industrial">

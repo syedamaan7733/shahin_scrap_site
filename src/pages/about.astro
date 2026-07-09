@@ -1,14 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CTABand from '../components/CTABand.astro';
 import { SITE } from '../config/site';
 ---
 
 <BaseLayout title="About Us">
+  <PageHero
+    title="Shahin At A Glance"
+    sub={SITE.motto}
+    image="/images/hero/home.jpg"
+  />
+
   <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-12">
-    <SectionHeading title="About Shahin Scrap" sub={SITE.motto} />
-    <div class="mt-8 max-w-3xl space-y-4 text-slate-industrial" data-reveal>
+    <SectionHeading title="The Company" />
+    <div
+      class="mt-8 max-w-4xl space-y-4 text-slate-industrial text-justify"
+      data-reveal
+    >
       <p>
         Shahin Scrap began in <strong class="text-steel-charcoal">1985</strong>
         as a scrap dealership in Ambikapur. Four decades on, the firm is one of
@@ -31,15 +41,39 @@ import { SITE } from '../config/site';
     </div>
   </section>
 
-  <section class="bg-gold-pale/30">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
-      <SectionHeading title="Our Vision" />
-      <p class="mt-6 max-w-3xl text-slate-industrial" data-reveal>
-        To be the preferred scrap partner for large-scale mining,
-        road-infrastructure, and industrial decommissioning across Chhattisgarh
-        and central India — with responsible recycling and full documentation
-        as the standard, not the exception.
-      </p>
+  <!-- Vision / Mission split -->
+  <section class="grid lg:grid-cols-2">
+    <div class="bg-surface flex items-center">
+      <div class="mx-auto max-w-xl px-6 py-16 text-center" data-reveal>
+        <h2
+          class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-steel-charcoal"
+        >
+          Our Vision
+        </h2>
+        <div class="mx-auto mt-3 h-1 w-16 rounded bg-copper-aged"></div>
+        <p class="mt-6 text-slate-industrial leading-relaxed">
+          To be the preferred scrap partner for large-scale mining,
+          road-infrastructure, and industrial decommissioning across
+          Chhattisgarh and central India — with responsible recycling and full
+          documentation as the standard, not the exception.
+        </p>
+      </div>
+    </div>
+    <div class="bg-slate-industrial flex items-center">
+      <div class="mx-auto max-w-xl px-6 py-16 text-center" data-reveal>
+        <h2
+          class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-white"
+        >
+          Our Mission
+        </h2>
+        <div class="mx-auto mt-3 h-1 w-16 rounded bg-copper-aged"></div>
+        <p class="mt-6 text-white/75 leading-relaxed">
+          To move every consignment through formal channels — certified
+          weighment, GST invoicing, and documented disposal — so the companies
+          we serve get audit-ready records, and the material they retire
+          returns to industry instead of landfill.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -86,7 +120,7 @@ import { SITE } from '../config/site';
       </div>
     </div>
     <p
-      class="mt-10 max-w-3xl italic text-slate-industrial border-l-4 border-copper-aged pl-4"
+      class="mt-10 max-w-3xl font-serif italic text-slate-industrial border-l-4 border-copper-aged pl-4"
       data-reveal
     >
       Shahin Scrap operates with all statutory registrations — GST, State

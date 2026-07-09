@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import MaterialCard from '../components/MaterialCard.astro';
 import WorkflowDiagram from '../components/WorkflowDiagram.astro';
@@ -7,13 +8,20 @@ import CTABand from '../components/CTABand.astro';
 ---
 
 <BaseLayout title="Vehicle & Heavy Equipment Scrap">
+  <PageHero
+    title="Vehicle & Equipment Scrap"
+    sub="End-of-life mining vehicles, dismantled under formal contract"
+    image="/images/vehicles/construction.jpg"
+  />
+
   <section class="mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-10">
-    <SectionHeading
-      title="Vehicle & Heavy Equipment Scrap"
-      sub="End-of-life mining and heavy-equipment scrapping under formal contracts — on-site dismantling, certified weighment, and complete disposal documentation."
-    />
+    <p class="mx-auto max-w-3xl text-center text-slate-industrial" data-reveal>
+      End-of-life mining and heavy-equipment scrapping under formal contracts —
+      on-site dismantling, certified weighment, and complete disposal
+      documentation.
+    </p>
     <div
-      class="mt-8 rounded-lg border-l-4 border-amber-signal bg-white p-5 shadow-sm"
+      class="mt-8 rounded-lg border-l-4 border-copper-aged bg-white p-5 shadow-sm"
       data-reveal
     >
       <p class="text-sm text-slate-industrial">
@@ -47,7 +55,7 @@ import CTABand from '../components/CTABand.astro';
     </div>
   </section>
 
-  <section class="bg-gold-pale/30">
+  <section class="bg-surface">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
       <SectionHeading title="Vehicle Scrapping Workflow" />
       <div class="mt-8">
