@@ -5,6 +5,8 @@ interface Props {
   light?: boolean;
 }
 const { value, label, light = false } = Astro.props;
+// Numeric values count up from 0 when scrolled into view (see BaseLayout).
+const counted = value.match(/^(\d+)(.*)$/);
 ---
 
 <div class="text-center" data-reveal>
@@ -14,7 +16,16 @@ const { value, label, light = false } = Astro.props;
       light ? 'text-gold-pale' : 'text-copper-aged',
     ]}
   >
-    {value}
+    {
+      counted ? (
+        <>
+          <span data-countup={counted[1]}>0</span>
+          {counted[2]}
+        </>
+      ) : (
+        value
+      )
+    }
   </p>
   <p
     class:list={[

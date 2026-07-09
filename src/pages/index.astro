@@ -3,30 +3,117 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import StatBlock from '../components/StatBlock.astro';
 import ClientMarquee from '../components/ClientMarquee.astro';
-import WorkflowDiagram from '../components/WorkflowDiagram.astro';
 import CTAButtons from '../components/CTAButtons.astro';
 import CTABand from '../components/CTABand.astro';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
-import { SITE } from '../config/site';
 import { getCollection } from 'astro:content';
 
 const featured = (await getCollection('case-studies'))
   .sort((a, b) => a.data.order - b.data.order)
   .find((cs) => cs.data.featured);
 
-const handleTiles = [
-  { title: 'Iron & Steel', image: '/images/materials/iron.jpg', href: '/services' },
-  { title: 'Copper', image: '/images/materials/copper.jpg', href: '/services' },
-  { title: 'Brass', image: '/images/materials/brass.jpg', href: '/services' },
-  { title: 'Aluminium', image: '/images/materials/aluminium.jpg', href: '/services' },
-  { title: 'Plastic', image: '/images/materials/plastic.jpg', href: '/services' },
-  { title: 'Tyres', image: '/images/materials/tyres.jpg', href: '/services' },
-  { title: 'Mining Vehicles', image: '/images/vehicles/mining.jpg', href: '/vehicle-scrap' },
-  { title: 'Highway Trucks', image: '/images/vehicles/trucks.jpg', href: '/vehicle-scrap' },
+const serviceCards = [
+  {
+    title: 'Iron Scrap',
+    image: '/images/services/iron.jpg',
+    href: '/services',
+    desc: 'From rusted sheets and rods to heavy structural steel — every grade of iron scrap, weighed on certified bridges and paid at honest market rates.',
+  },
+  {
+    title: 'Copper Scrap',
+    image: '/images/services/copper.jpg',
+    href: '/services',
+    desc: "Bright wire, pipes, motors and mixed copper — carefully graded, honestly weighed and paid at the day's best rate. From one bag to a truckload.",
+  },
+  {
+    title: 'Aluminium Scrap',
+    image: '/images/services/aluminium.jpg',
+    href: '/services',
+    desc: 'Utensils, sheets, sections, castings and machine parts — every form of aluminium bought at fair rates, from household lots to industrial consignments.',
+  },
+  {
+    title: 'Brass Scrap',
+    image: '/images/services/brass.jpg',
+    href: '/services',
+    desc: 'Armatures, fittings, valves, taps and mixed brass — carefully sorted and graded so you get full value for every kilogram.',
+  },
+  {
+    title: 'Plastic Scrap',
+    image: '/images/services/plastic.jpg',
+    href: '/services',
+    desc: 'Household, commercial and industrial plastic of every type — collected, sorted and sent for responsible recycling instead of the landfill.',
+  },
+  {
+    title: 'Tyre Scrap',
+    image: '/images/services/tyres.jpg',
+    href: '/services',
+    desc: 'From scooter tyres to giant mining tyres — every size and any count accepted, cleared quickly from your yard or site.',
+  },
+  {
+    title: 'Mining Machinery Scrap',
+    image: '/images/services/mining-machinery.jpg',
+    href: '/vehicle-scrap',
+    desc: 'Poclain, loaders, excavators and dumpers that have done their duty — we dismantle them safely at site and haul every tonne away.',
+  },
+  {
+    title: 'Heavy Truck Scrap',
+    image: '/images/services/heavy-truck.jpg',
+    href: '/vehicle-scrap',
+    desc: 'Retired trucks, tippers and dumpers bought outright — dismantled by our own team, with complete papers and on-time payment.',
+  },
+  // Below the fold — revealed by the "show more" arrow.
+  {
+    title: 'Stainless Steel Scrap',
+    image: '/images/services/stainless-steel.jpg',
+    href: '/services',
+    desc: 'Kitchen, dairy, hospital and fabrication stainless steel of every grade — weighed transparently and paid at true market value.',
+  },
+  {
+    title: 'Heavy Motor & Compressor Scrap',
+    image: '/images/services/motor-compressor.jpg',
+    href: '/services',
+    desc: 'Burnt-out motors, compressors and electrical machinery of any size — from single units to container loads, picked up and paid for fairly.',
+  },
+  {
+    title: 'Aluminium & Copper Cable Scrap',
+    image: '/images/services/cables.jpg',
+    href: '/services',
+    desc: 'Armoured, insulated and bare cables — aluminium or copper — bought by weight with honest recovery rates and no hidden cuts.',
+  },
+  {
+    title: 'Waste Paper',
+    image: '/images/services/waste-paper.jpg',
+    href: '/services',
+    desc: 'Newspapers, cartons, office records and press waste — compressed on our own baling machine into neat bales for clean, efficient recycling.',
+  },
+  {
+    title: 'Mixed Industrial Scrap',
+    image: '/images/services/mixed-industrial.jpg',
+    href: '/services',
+    desc: "Unsorted plant and factory scrap lifted straight from your floor — our grabs sort, grade and load it so you don't lift a finger.",
+  },
+  {
+    title: 'Road Construction Scrap',
+    image: '/images/services/road-construction.jpg',
+    href: '/services',
+    desc: 'Barriers, rebar, plates and leftover site material — we clear road and civil project sites quickly so your next job starts on time.',
+  },
+  {
+    title: 'Construction Equipment',
+    image: '/images/services/construction-equipment.jpg',
+    href: '/vehicle-scrap',
+    desc: 'Rollers, mixers, cranes and breakers past their working life — broken down safely by our team and turned into documented value.',
+  },
+  {
+    title: 'Commercial Trucks & Trailers',
+    image: '/images/services/commercial-trucks.jpg',
+    href: '/vehicle-scrap',
+    desc: 'Old fleets, vans and trailers rusting in your lot — we buy them as they stand, tow them away and handle every paper.',
+  },
 ];
 ---
 
-<BaseLayout title="Metal, Material & Vehicle Scrap — Surguja, Chhattisgarh">
+<BaseLayout title="Home">
   <!-- Hero carousel -->
   <section
     id="hero-carousel"
@@ -35,19 +122,19 @@ const handleTiles = [
   <div class="absolute inset-0" aria-hidden="true">
     <div
       class="carousel-bg active"
-      style="background-image: linear-gradient(rgba(14,12,10,0.6), rgba(14,12,10,0.6)), url('/images/hero/home.jpg');"
+      style="background-image: linear-gradient(100deg, rgba(14,12,10,0.55) 0%, rgba(14,12,10,0.25) 55%, rgba(14,12,10,0.05) 100%), url('/images/hero/scrap-yard.jpg');"
     >
     </div>
 
     <div
       class="carousel-bg"
-      style="background-image: linear-gradient(rgba(14,12,10,0.6), rgba(14,12,10,0.6)), url('/images/vehicles/mining.jpg');"
+      style="background-image: linear-gradient(100deg, rgba(14,12,10,0.55) 0%, rgba(14,12,10,0.25) 55%, rgba(14,12,10,0.05) 100%), url('/images/hero/vehicle-claw.jpg');"
     >
     </div>
 
     <div
       class="carousel-bg"
-      style="background-image: linear-gradient(rgba(14,12,10,0.6), rgba(14,12,10,0.6)), url('/images/materials/iron.jpg');"
+      style="background-image: linear-gradient(100deg, rgba(14,12,10,0.55) 0%, rgba(14,12,10,0.25) 55%, rgba(14,12,10,0.05) 100%), url('/images/hero/grab-crane.jpg');"
     >
     </div>
   </div>
@@ -59,44 +146,24 @@ const handleTiles = [
       <div class="carousel-slide min-w-full flex items-center">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 py-24 text-canvas">
           <span
-            class="font-heading inline-block text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
+            class="hero-glass font-heading inline-block rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
           >
-            {SITE.motto}
+            Surguja · Chhattisgarh
           </span>
           <h1
             class="mt-6 max-w-3xl font-heading font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-tight"
           >
-          Trusted Since 1985. Built for Businesses That Build India.
+            One of the Biggest Metal Scrap Dealers in Surguja. Trusted Since
+            1985.
           </h1>
-          <p class="mt-6 max-w-2xl text-lg text-white/80">
-            Contractual scrap solutions from Ambikapur, Surguja — metals,
-            materials, and end-of-life mining vehicles, handled formally with
-            full documentation.
-          </p>
-          <div class="mt-9">
-            <CTAButtons />
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-slide min-w-full flex items-center">
-        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 py-24 text-canvas">
-          <span
-            class="font-heading inline-block text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
+          <p
+            class="hero-glass mt-6 max-w-2xl rounded-lg px-4 py-3 text-lg text-white/90"
           >
-            Surguja · Chhattisgarh
-          </span>
-          <h2
-            class="mt-6 max-w-3xl font-heading font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-tight"
-          >
-            One of the Biggest Metal Scrap Dealers in Surguja
-          </h2>
-          <p class="mt-6 max-w-2xl text-lg text-white/80">
-            Serving mining companies, PSUs, and industrial clients across
-            Surguja district with documented, GST-compliant contracts since
+            Big or small, we buy it all — from factory and mine scrap to the
+            old metal lying at your home. Fair rates, honest weighing, since
             1985.
           </p>
-          <div class="mt-9">
+          <div class="mt-9 inline-block rounded-xl p-2.5">
             <CTAButtons />
           </div>
         </div>
@@ -105,21 +172,47 @@ const handleTiles = [
       <div class="carousel-slide min-w-full flex items-center">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 py-24 text-canvas">
           <span
-            class="font-heading inline-block text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
+            class="hero-glass font-heading inline-block rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
           >
-            Industrial to Local
+            Vehicles & Machines
           </span>
           <h2
             class="mt-6 max-w-3xl font-heading font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-tight"
           >
-            Metals, Plastics & Industrial Scrap — From Mine to Market
+            Old Vehicles? We Turn Them Into Value.
           </h2>
-          <p class="mt-6 max-w-2xl text-lg text-white/80">
-            We serve industrial clients, local businesses, and general sellers
-            — iron, copper, brass, plastic, and tyres — all weighed on
-            certified bridges.
+          <p
+            class="hero-glass mt-6 max-w-2xl rounded-lg px-4 py-3 text-lg text-white/90"
+          >
+            Cars, trucks, buses and mining & industrial machines such as
+            Poclain, loaders and excavators — we pick them up, weigh them
+            fairly and pay you on time, with all the paperwork done.
           </p>
-          <div class="mt-9">
+          <div class=" mt-9 inline-block rounded-xl p-2.5">
+            <CTAButtons />
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-slide min-w-full flex items-center">
+        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 py-24 text-canvas">
+          <span
+            class="hero-glass font-heading inline-block rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
+          >
+            Every Kind of Scrap · Every Scale
+          </span>
+          <h2
+            class="mt-6 max-w-3xl font-heading font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-tight"
+          >
+            From One Sack to a Thousand Tonnes
+          </h2>
+          <p
+            class="hero-glass mt-6 max-w-2xl rounded-lg px-4 py-3 text-lg text-white/90"
+          >
+            Iron, copper, aluminium, plastic, paper, tyres and more — we work
+            with companies, contractors and everyday sellers alike.
+          </p>
+          <div class=" mt-9 inline-block rounded-xl p-2.5">
             <CTAButtons />
           </div>
         </div>
@@ -148,7 +241,7 @@ const handleTiles = [
         </p>
       </div>
       <div
-        class="bg-cover bg-center px-8 py-9 text-center"
+        class="hidden sm:block bg-cover bg-center px-8 py-9 text-center"
         style="background-image: linear-gradient(rgba(20,18,16,0.78), rgba(20,18,16,0.78)), url('/images/materials/mixed.jpg');"
       >
         <h3 class="font-heading text-lg font-bold text-brass-light">
@@ -157,7 +250,7 @@ const handleTiles = [
         <p class="mt-1 text-sm text-white/85">Rates locked for the term</p>
       </div>
       <div
-        class="bg-cover bg-center px-8 py-9 text-center"
+        class="hidden sm:block bg-cover bg-center px-8 py-9 text-center"
         style="background-image: linear-gradient(rgba(20,18,16,0.78), rgba(20,18,16,0.78)), url('/images/vehicles/trucks.jpg');"
       >
         <h3 class="font-heading text-lg font-bold text-brass-light">
@@ -191,7 +284,9 @@ const handleTiles = [
           local metal purchases has grown into a contractual B2B operation
           serving mining companies, industrial plants, and road & construction
           contractors — with certified weighment, GST invoicing, and documented
-          disposal on every consignment.
+          disposal on every consignment. And it isn't only for big companies:
+          households and local sellers are just as welcome. Whether it's one
+          old cooler or a full truckload, we weigh it fairly and pay you right.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a
@@ -209,49 +304,199 @@ const handleTiles = [
     </div>
   </section>
 
-  <!-- What we handle -->
+  <!-- Our handling & services -->
   <section id="what-we-do" class="scroll-mt-28">
     <div class="bg-copper-aged py-7">
       <h2
         class="text-center font-heading text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl"
       >
-        What We Handle
+        Our Handling & Services
       </h2>
     </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {
-        handleTiles.map((tile) => (
-          <a href={tile.href} class="group relative block">
+        serviceCards.map((card, i) => (
+          <a
+            href={card.href}
+            class:list={[
+              'service-card group relative block overflow-hidden',
+              i >= 8 && 'hidden service-card-extra',
+            ]}
+          >
             <div class="aspect-[4/3] overflow-hidden bg-steel-charcoal">
               <img
-                src={tile.image}
-                alt={tile.title}
+                src={card.image}
+                alt={card.title}
                 loading="lazy"
-                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                class="service-img h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 group-focus-visible:scale-110"
               />
             </div>
-            <div class="bg-copper-aged px-2 py-3 text-center">
-              <h3 class="font-heading text-sm font-bold text-white">
-                {tile.title}
+            <div
+              class="service-overlay absolute inset-0 flex flex-col items-center justify-center bg-black/40 px-4 text-center transition-colors duration-500 group-hover:bg-black/70 group-focus-visible:bg-black/70"
+            >
+              <h3
+                class="font-heading text-sm sm:text-base font-bold uppercase tracking-wide text-white"
+              >
+                {card.title}
               </h3>
+              <p
+                class="service-desc mt-0 max-h-0 overflow-hidden text-xs sm:text-sm text-white/85 opacity-0 transition-all duration-500 group-hover:mt-2 group-hover:max-h-28 group-hover:opacity-100 group-focus-visible:mt-2 group-focus-visible:max-h-28 group-focus-visible:opacity-100"
+              >
+                {card.desc}
+              </p>
             </div>
           </a>
         ))
       }
     </div>
+    <div class="bg-surface py-6 text-center">
+      <button
+        id="services-toggle"
+        class="group inline-flex flex-col items-center gap-1 font-heading text-xs font-bold uppercase tracking-wider text-copper-aged hover:text-bronze-deep transition-colors"
+        aria-expanded="false"
+        aria-label="Show all services"
+      >
+        <span data-label>Show All Services</span>
+        <svg
+          class="h-5 w-5 transition-transform duration-300 group-aria-expanded:rotate-180"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </button>
+    </div>
   </section>
 
   <!-- How we work -->
   <section class="bg-surface">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-20">
       <SectionHeading
         title="How We Work"
-        sub="A contract-driven process, not an informal pickup."
+        sub="Five things we bring to every job — big or small."
+        center
       />
-      <div class="mt-10">
-        <WorkflowDiagram
-          steps={['Site Survey', 'Contract & Rates', 'Lift & Process', 'Documentation & Settlement']}
-        />
+      <ol class="relative mt-12 space-y-10">
+        <!-- vertical connector line -->
+        <div
+          class="absolute left-5 top-2 bottom-2 w-px bg-copper-aged/30"
+          aria-hidden="true"
+        >
+        </div>
+        {
+          [
+            {
+              title: 'We Listen First',
+              desc: 'Tell us what you have — a quick call or a WhatsApp photo is enough to get started.',
+            },
+            {
+              title: 'We Come to You',
+              desc: 'Our team visits your site, plant or home — anywhere in India.',
+            },
+            {
+              title: 'Fair Weighing, Fair Price',
+              desc: 'Certified weighbridges and transparent market rates. No guesswork, no haggling games.',
+            },
+            {
+              title: 'We Do the Heavy Lifting',
+              desc: 'Cutting, dismantling, loading, transport — our people and machines handle it all.',
+            },
+            {
+              title: 'Paid & Documented',
+              desc: 'On-time payment with GST invoices and complete paperwork, every single time.',
+            },
+          ].map((step, i) => (
+            <li class="relative flex gap-6 pl-0" data-reveal>
+              <span class="font-heading z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-copper-aged text-sm font-bold text-white shadow">
+                {i + 1}
+              </span>
+              <div>
+                <h3 class="font-heading text-lg font-bold text-steel-charcoal">
+                  {step.title}
+                </h3>
+                <p class="mt-1 text-sm leading-relaxed text-slate-industrial">
+                  {step.desc}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section class="bg-canvas">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-20">
+      <SectionHeading
+        title="Why Us"
+        sub="What you get when Shahin Scrap handles your scrap."
+        center
+      />
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          [
+            {
+              title: 'Professional Team',
+              desc: 'Trained, experienced people on every job.',
+              icon: 'M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2 M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M21 21v-2a4 4 0 0 0-3-3.87 M15 3.13a4 4 0 0 1 0 7.75',
+            },
+            {
+              title: 'Quick Dismantling & Transportation',
+              desc: 'Fast cutting, loading and lifting from your site.',
+              icon: 'M10 17h4V5H2v12h3 M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1 M7.5 17a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z M17.5 17a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z',
+            },
+            {
+              title: 'All Heavy Lifting By Us',
+              desc: 'Our men and machines do the hard work — not you.',
+              icon: 'M12 3v6 M8 6l4 3 4-3 M4 21h16 M6 21V11h12v10',
+            },
+            {
+              title: 'Fair Market Price',
+              desc: 'Transparent rates, certified weighing, no games.',
+              icon: 'M12 3v18 M5 7h14 M5 7l-3 6a3 3 0 0 0 6 0l-3-6z M19 7l-3 6a3 3 0 0 0 6 0l-3-6z',
+            },
+            {
+              title: 'No Delay In Payment',
+              desc: 'You get paid on time, every time.',
+              icon: 'M2 8h20v10H2z M2 8V6h16v2 M16 13a2 2 0 1 0 4 0 2 2 0 0 0-4 0z',
+            },
+            {
+              title: 'Safety Is The Top Priority',
+              desc: 'Careful, safe handling on every site, every load.',
+              icon: 'M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z M9 12l2 2 4-4',
+            },
+          ].map((point) => (
+            <div
+              class="flex items-start gap-4 rounded-lg border border-copper-aged/15 bg-surface p-6"
+              data-reveal
+            >
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-copper-aged/10 text-copper-aged">
+                <svg
+                  class="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d={point.icon} />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-heading font-bold text-steel-charcoal">
+                  {point.title}
+                </h3>
+                <p class="mt-1 text-sm text-slate-industrial">{point.desc}</p>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -316,6 +561,33 @@ const handleTiles = [
 </BaseLayout>
 
 <script>
+  // Touch devices: first tap reveals a service card's description, second tap follows the link.
+  if (window.matchMedia('(hover: none)').matches) {
+    const cards = [...document.querySelectorAll('.service-card')];
+    cards.forEach((card) =>
+      card.addEventListener('click', (e) => {
+        if (!card.classList.contains('touched')) {
+          e.preventDefault();
+          cards.forEach((c) => c.classList.remove('touched'));
+          card.classList.add('touched');
+        }
+      })
+    );
+  }
+
+  // "Show all services" expander
+  const servicesToggle = document.getElementById('services-toggle');
+  servicesToggle?.addEventListener('click', () => {
+    const expanded = servicesToggle.getAttribute('aria-expanded') === 'true';
+    document
+      .querySelectorAll('.service-card-extra')
+      .forEach((card) => card.classList.toggle('hidden', expanded));
+    servicesToggle.setAttribute('aria-expanded', String(!expanded));
+    const label = servicesToggle.querySelector('[data-label]');
+    if (label)
+      label.textContent = expanded ? 'Show All Services' : 'Show Less';
+  });
+
   const section = document.getElementById('hero-carousel');
   const track = document.getElementById('hero-track');
   if (section && track) {
