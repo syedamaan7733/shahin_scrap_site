@@ -5,53 +5,40 @@ import SectionHeading from "../components/SectionHeading.astro";
 import CTABand from "../components/CTABand.astro";
 import { CLIENTS } from "../config/site";
 
-// NOTE: `image` values are placeholders (self-contained SVG data URIs).
-// Replace each `ph("…")` with the real photo — recommended: drop files in
-// `public/images/sectors/` and use e.g. image: "/images/sectors/coal.jpg".
-const ph = (label: string) => {
-  const safe = label.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-  return (
-    "data:image/svg+xml," +
-    encodeURIComponent(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450"><rect width="800" height="450" fill="#ded9d5"/><text x="400" y="230" font-family="Montserrat, Arial, sans-serif" font-size="34" font-weight="700" fill="#5c4231" text-anchor="middle">${safe}</text></svg>`
-    )
-  );
-};
-
 const sectors = [
   {
     name: "Public-Sector Coal & Mining",
-    image: ph("Coal & Mining"),
+    image: "/images/sectors/coal-mining.jpg",
     detail:
       "End-to-end auction-based procurement, lifting and responsible disposal of scrap, obsolete machinery and end-of-life equipment for public-sector mining companies and their subsidiaries operating across the Surguja coal belt and surrounding regions.",
   },
   {
     name: "Private Mining Conglomerates",
-    image: ph("Private Mining"),
+    image: "/images/sectors/private-mining.jpg",
     detail:
       "Structured scrap-management and asset-disposal programmes for private mining operators, covering ferrous and non-ferrous scrap, obsolete machinery, worn-out components and end-of-life equipment with efficient site clearance and logistics support.",
   },
   {
     name: "Road & Highway Contractors",
-    image: ph("Road & Highway"),
+    image: "/images/sectors/road-highway.jpg",
     detail:
       "Ongoing site-clearance and scrap-lifting services for road, highway and infrastructure projects, including shuttering materials, reinforcement steel, used tyres, machinery parts, fabrication waste and other recoverable construction-site materials.",
   },
   {
     name: "Industrial Plants",
-    image: ph("Industrial Plants"),
+    image: "/images/sectors/industrial-plants.jpg",
     detail:
       "Reliable procurement and clearance of industrial scrap through fixed-rate and contractual arrangements, including process-generated scrap, obsolete plant and machinery, maintenance waste, plant clean-outs and material recovery from decommissioning projects.",
   },
   {
     name: "Government Auctions (MSTC)",
-    image: ph("MSTC Auctions"),
+    image: "/images/sectors/mstc.jpg",
     detail:
       "Active participation in government and public-sector e-auctions conducted through the MSTC portal, supported by complete documentation, regulatory compliance, timely payments and organised lifting of awarded materials from designated sites.",
   },
   {
     name: "Civil / General",
-    image: ph("Civil / General"),
+    image: "/images/sectors/civil-general.jpg",
     detail:
       "Comprehensive scrap procurement and clearance services for civil works, commercial projects and general industries, including demolition recovery, structural steel, mixed metal scrap, surplus materials and bulk site-clearance requirements.",
   },
