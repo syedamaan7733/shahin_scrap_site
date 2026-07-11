@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
-import CTAButtons from '../components/CTAButtons.astro';
-import { SITE, telLink, whatsappLink } from '../config/site';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+import { SITE, telLink, whatsappLink } from "../config/site";
 
 const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapsQuery)}&output=embed`;
 ---
@@ -21,6 +21,10 @@ const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapsQue
     >
       <p class="font-mono text-2xl sm:text-3xl text-gold-pale tabular-nums">
         <a href={telLink} class="hover:text-canvas">{SITE.phoneDisplay}</a>
+        |
+        <a href={telLink} class="hover:text-canvas"
+          >{SITE.secondaryPhoneDisplay}</a
+        >
       </p>
       <p class="mt-2 text-sm text-brass-light">
         WhatsApp and calls — same number · {SITE.hours}
@@ -67,8 +71,7 @@ const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapsQue
           class="h-full w-full min-h-[320px]"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-        ></iframe>
+          allowfullscreen></iframe>
       </div>
     </div>
   </section>

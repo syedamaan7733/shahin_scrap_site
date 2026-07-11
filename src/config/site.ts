@@ -3,7 +3,8 @@ export const SITE = {
   name: 'Shahin Scrap',
   motto: 'Trusted Since 1985',
   foundedYear: 1985,
-  phoneDisplay: '+91 86021 23226',
+  phoneDisplay: '+91 86021 23226 ',
+  secondaryPhoneDisplay: '+91 83191 27709',
   phoneE164: '+918602123226',
   whatsappNumber: '918602123226',
   whatsappPrefill:
