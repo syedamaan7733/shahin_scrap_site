@@ -410,15 +410,16 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
             const el = entry.target as HTMLElement;
             countObserver.unobserve(el);
             const target = Number(el.dataset.countup || '0');
+            const fmt = (n: number) => n.toLocaleString('en-IN');
             if (reduceMotion || !target) {
-              el.textContent = String(target);
+              el.textContent = fmt(target);
               continue;
             }
             const duration = 1600;
             const t0 = performance.now();
             const tick = (now: number) => {
               const p = Math.min((now - t0) / duration, 1);
-              el.textContent = String(
+              el.textContent = fmt(
                 Math.round(target * (1 - Math.pow(1 - p, 3)))
               );
               if (p < 1) requestAnimationFrame(tick);

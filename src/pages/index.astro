@@ -122,7 +122,7 @@ const serviceCards = [
   <div class="absolute inset-0" aria-hidden="true">
     <div
       class="carousel-bg active"
-      style="background-image: linear-gradient(100deg, rgba(14,12,10,0.55) 0%, rgba(14,12,10,0.25) 55%, rgba(14,12,10,0.05) 100%), url('/images/hero/scrap-yard.jpg');"
+      style="background-image: linear-gradient(100deg, rgba(14,12,10,0.55) 0%, rgba(14,12,10,0.25) 55%, rgba(14,12,10,0.05) 100%), url('/images/hero/claw-engines.jpg');"
     >
     </div>
 
@@ -137,6 +137,8 @@ const serviceCards = [
       style="background-image: linear-gradient(100deg, rgba(14,12,10,0.55) 0%, rgba(14,12,10,0.25) 55%, rgba(14,12,10,0.05) 100%), url('/images/hero/grab-crane.jpg');"
     >
     </div>
+
+    <div class="carousel-bg carousel-bg-safety"></div>
   </div>
 
     <div
@@ -217,6 +219,31 @@ const serviceCards = [
           </div>
         </div>
       </div>
+
+      <div class="carousel-slide min-w-full flex items-center">
+        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 py-24 text-canvas">
+          <span
+            class="hero-glass font-heading inline-block rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-brass-light"
+          >
+            Safety First
+          </span>
+          <h2
+            class="mt-6 max-w-3xl font-heading font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-tight"
+          >
+            Safety Comes First. Every Cut, Every Lift.
+          </h2>
+          <p
+            class="hero-glass mt-6 max-w-2xl rounded-lg px-4 py-3 text-lg text-white/90"
+          >
+            Face shields, welding helmets, fire-resistant suits, industrial
+            gloves and steel-toe boots — our trained team never touches a
+            torch or a crane without full protective gear.
+          </p>
+          <div class="mt-9 inline-block rounded-xl p-2.5">
+            <CTAButtons />
+          </div>
+        </div>
+      </div>
     </div>
 
     <div
@@ -225,6 +252,7 @@ const serviceCards = [
       <button class="carousel-dot active" aria-label="Go to slide 1"></button>
       <button class="carousel-dot" aria-label="Go to slide 2"></button>
       <button class="carousel-dot" aria-label="Go to slide 3"></button>
+      <button class="carousel-dot" aria-label="Go to slide 4"></button>
     </div>
 
   </section>
@@ -521,7 +549,11 @@ const serviceCards = [
     <div
       class="mx-auto max-w-7xl px-4 sm:px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8"
     >
-      <StatBlock light value="20 t" label="CO₂ Avoided Through Recycling" />
+      <StatBlock
+        light
+        value="10,000 t"
+        label="CO₂ Avoided Through Recycling"
+      />
       <StatBlock light value="100%" label="Documented Consignments" />
       <StatBlock light value="MSTC" label="Auction & Compliance Ready" />
     </div>
@@ -532,7 +564,7 @@ const serviceCards = [
     featured && (
       <section class="mx-auto max-w-7xl px-4 sm:px-6 py-20">
         <SectionHeading
-          title="Featured Case Study"
+          title="Featured Experience"
           sub="How a fixed-rate contract turned plant scrap into predictable, documented revenue."
         />
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -549,7 +581,7 @@ const serviceCards = [
               href="/case-studies"
               class="text-copper-aged font-semibold hover:text-copper-aged"
             >
-              View all case studies →
+              View all experiences →
             </a>
           </div>
         </div>

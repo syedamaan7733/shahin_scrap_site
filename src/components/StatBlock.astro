@@ -6,7 +6,7 @@ interface Props {
 }
 const { value, label, light = false } = Astro.props;
 // Numeric values count up from 0 when scrolled into view (see BaseLayout).
-const counted = value.match(/^(\d+)(.*)$/);
+const counted = value.match(/^([\d,]+)(.*)$/);
 ---
 
 <div class="text-center" data-reveal>
@@ -19,7 +19,7 @@ const counted = value.match(/^(\d+)(.*)$/);
     {
       counted ? (
         <>
-          <span data-countup={counted[1]}>0</span>
+          <span data-countup={counted[1].replace(/,/g, '')}>0</span>
           {counted[2]}
         </>
       ) : (
