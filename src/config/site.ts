@@ -18,7 +18,7 @@ export const SITE = {
   // Token from Google Search Console "HTML tag" verification; leave empty if verifying via DNS.
   googleSiteVerification: '',
   description:
-    'Shahin Scrap — trusted scrap dealer in Ambikapur, Chhattisgarh since 1985. Metal, material and vehicle scrapping for mining, industrial and government clients.',
+    'Shahin Scrap — trusted scrap dealer in Ambikapur, Chhattisgarh since 1985. Metal, material and vehicle scrapping for general purpose, mining, industrial and government/semi-government sectors.',
 };
 
 export const whatsappLink = (text: string = SITE.whatsappPrefill) =>
