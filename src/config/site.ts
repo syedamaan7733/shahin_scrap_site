@@ -15,6 +15,8 @@ export const SITE = {
   hours: 'Daily, 8:00 AM – 10:00 PM',
   mapsQuery: 'Mahamaya Road, Ambikapur, Surguja, Chhattisgarh 497001',
   co2AvoidedTonnes: 10000,
+  // Token from Google Search Console "HTML tag" verification; leave empty if verifying via DNS.
+  googleSiteVerification: '',
   description:
     'Shahin Scrap — metal, material and vehicle scrapping firm serving mining, industrial and government sectors from Ambikapur, Surguja, Chhattisgarh. Trusted since 1985.',
 };

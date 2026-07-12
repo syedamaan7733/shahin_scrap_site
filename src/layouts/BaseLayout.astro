@@ -6,10 +6,39 @@ import FloatingWhatsApp from "../components/FloatingWhatsApp.astro";
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = SITE.description } = Astro.props;
+const {
+  title,
+  description = SITE.description,
+  ogImage = "/images/logo/logo.png",
+} = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const fullTitle = `${title} | ${SITE.name}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: SITE.name,
+  description: SITE.description,
+  url: Astro.site?.href,
+  telephone: SITE.phoneE164,
+  email: SITE.email,
+  foundingDate: String(SITE.foundedYear),
+  image: ogImageURL.href,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Mahamaya Road",
+    addressLocality: "Ambikapur",
+    addressRegion: "Chhattisgarh",
+    postalCode: "497001",
+    addressCountry: "IN",
+  },
+  openingHours: "Mo-Su 08:00-22:00",
+};
 ---
 
 <!doctype html>
@@ -18,8 +47,29 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="only light" />
-    <title>{title} | {SITE.name}</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {
+      SITE.googleSiteVerification && (
+        <meta
+          name="google-site-verification"
+          content={SITE.googleSiteVerification}
+        />
+      )
+    }
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
