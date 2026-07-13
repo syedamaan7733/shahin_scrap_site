@@ -35,6 +35,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* The site is light-themed by design; opt out of browser/OS dark mode
+     and Chrome's forced auto-darkening. */
+  color-scheme: only light;
 }
 
 body {
